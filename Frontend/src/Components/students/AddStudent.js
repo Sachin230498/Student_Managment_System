@@ -67,7 +67,7 @@ export default function AddStudent() {
       <div className='flex items-center gap-24 mb-16'>
         <div className='flex items-center gap-2 cursor-pointer'>
           <IoIosAddCircleOutline className='text-gray-700' />
-          <p>Add another</p>
+          <p>Add another h</p>
         </div>
         <button className='bg-gray-300 flex items-center text-gray-700 rounded-md px-6 py-2 '>Add Student</button>
       </div>
