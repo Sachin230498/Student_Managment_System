@@ -1,15 +1,16 @@
 
-// import {Router, Routes, Route } from 'react-router-dom';
-// import Instructor from './Admin/Instructor/instructor';
-// import AddInstructor from './Admin/Instructor/AddInstructor';
+import React from 'react';
+import './App.css';
+import Routers from './Routes/Routers';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
-
-    <div>
-
-    {/* <Route path='/instructor' Component={Instructor}/>
-    <Route  path= '/add' Component={AddInstructor}/> */}
+    <div className="App">
+     
+      <Router>
+        <Routers />
+      </Router>
 
     </div>
   );
