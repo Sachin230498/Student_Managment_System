@@ -1,5 +1,5 @@
 
-import {Router, Routes, Route } from 'react-router-dom';
+// import {Router, Routes, Route } from 'react-router-dom';
 // import Instructor from './Admin/Instructor/instructor';
 // import AddInstructor from './Admin/Instructor/AddInstructor';
 
