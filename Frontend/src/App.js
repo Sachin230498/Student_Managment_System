@@ -1,10 +1,15 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Routers from './Routes/Routers';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <h1 className="bg-red-500">hello</h1>
+     
+      <Router>
+        <Routers />
+      </Router>
     </div>
   );
 }
