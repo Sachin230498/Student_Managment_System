@@ -140,7 +140,7 @@ export default function LeftNavbar() {
             </Link>
           </li>
           <li className="mb-12 text-xl">
-            <Link to="/teachers" className="flex items-center text-primary" onClick={closeSidebar}>
+            <Link to="/instructor" className="flex items-center text-primary" onClick={closeSidebar}>
               <GiTeacher className="mr-2" /> <div className="hidden md:block">Instructor</div>
             </Link>
           </li>
