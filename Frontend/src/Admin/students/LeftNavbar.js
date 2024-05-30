@@ -92,7 +92,7 @@ import { RiArrowDropUpLine, RiArrowDropDownLine, RiBankFill } from "react-icons/
 import { PiStudentBold } from "react-icons/pi";
 import { IoSettingsSharp, IoReorderThreeOutline, IoClose } from "react-icons/io5"; // Importing close icon
 import { FaBookReader } from "react-icons/fa";
-import logo3 from '../Assets/logo3.png';
+import logo3 from '../../Assets/logo3.png';
 
 export default function LeftNavbar() {
   const [showStudentDropdown, setShowStudentDropdown] = useState(false);

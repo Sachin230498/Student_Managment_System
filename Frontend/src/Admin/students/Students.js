@@ -90,9 +90,8 @@ import { CiSearch, CiHeadphones } from "react-icons/ci";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import sleep from '../../Assets/sleep.png';
 import AddStudent from './AddStudent';
-import LeftNavbar from '../LeftNavbar';
-import Header from '../Header';
-
+import Header from './Header';
+import LeftNavbar from "./LeftNavbar"
 export default function Students() {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
