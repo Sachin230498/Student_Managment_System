@@ -2,12 +2,18 @@
 import React from 'react';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { RxCross2 } from "react-icons/rx";
 
-export default function AddInstructor() {
+
+export default function AddInstructor({onClose}) {
+  const handleClose = () => {
+    onClose();
+  };
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 overflow-y-scroll mt-5">
 
     <div className="bg-white p-4 max-w-xl mx-auto  rounded-lg">
+    <div className='flex justify-end'> <button onClick={handleClose}> <RxCross2 /></button></div>
       <h3 className="text-2xl font-bold mb-4">Add Instructor</h3>
     
       <div className="space-y-4">

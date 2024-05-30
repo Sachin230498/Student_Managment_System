@@ -97,11 +97,12 @@ export default function Students() {
   const [search, setSearch] = useState('');
   const [showAddStud, setShowAddStud] = useState(false);
   const [students, setStudents] = useState([]);
-
+  
   const handleAddStudent = (student) => {
     setStudents([...students, student]);
     setShowAddStud(false);
   };
+  
 
   return (
     <div className="flex flex-col md:flex-row">
@@ -161,12 +162,12 @@ export default function Students() {
           </div>
         )}
 
-        <div className="flex justify-center items-center  gap-8 mt-4 md:mt-0 md:float-right mb-4 bg-blue-900 w-36 h-10 rounded-xl">
-          <div className="flex items-center  gap-2">
+        <div className="flex justify-end items-center w-full  gap-8 mt-4 md:mt-0 md:float-right mb-4  ">
+          <div className="flex items-center w-fit  gap-2 bg-blue-900 rounded-xl  h-10">
             <CiHeadphones className="text-white" />
             <button className="text-white">Support</button>
-          </div>
           <IoIosArrowDropup className="text-2xl cursor-pointer text-white" />
+          </div>
         </div>
 
         {showAddStud && (
