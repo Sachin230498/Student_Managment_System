@@ -92,7 +92,7 @@ import { RiArrowDropUpLine, RiArrowDropDownLine, RiBankFill } from "react-icons/
 import { PiStudentBold } from "react-icons/pi";
 import { IoSettingsSharp, IoReorderThreeOutline, IoClose } from "react-icons/io5"; // Importing close icon
 import { FaBookReader } from "react-icons/fa";
-import logo3 from '../Assets/logo3.png';
+import logo3 from '../../Assets/logo3.png';
 
 export default function LeftNavbar() {
   const [showStudentDropdown, setShowStudentDropdown] = useState(false);
@@ -140,7 +140,7 @@ export default function LeftNavbar() {
             </Link>
           </li>
           <li className="mb-12 text-xl">
-            <Link to="/teachers" className="flex items-center text-primary" onClick={closeSidebar}>
+            <Link to="/instructor" className="flex items-center text-primary" onClick={closeSidebar}>
               <GiTeacher className="mr-2" /> <div className="hidden md:block">Instructor</div>
             </Link>
           </li>

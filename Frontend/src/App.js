@@ -1,6 +1,7 @@
+
 import React from 'react';
 import './App.css';
-import Routers from './Routes/Routers';
+import Routers from './Routes/AdminRoutes';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Router>
         <Routers />
       </Router>
+
     </div>
   );
 }
