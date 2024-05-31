@@ -309,9 +309,9 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const Dashboard = () => {
-  const studentsPercentage = 50; // 50%
-  const instructorsPercentage = 30; // 30%
-  const coursesPercentage = 20; // 20%
+  const studentsPercentage = 50; 
+  const instructorsPercentage = 30; 
+  const coursesPercentage = 20; 
 
   return (
     <div className="flex flex-col md:flex-row">
