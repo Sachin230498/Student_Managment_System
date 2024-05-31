@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react';
+import {Link} from "react-router-dom";
+
 import mern from '../../Assets/mern.jpg'
 import python from '../../Assets/java.jpg'
 import dm from '../../Assets/dm.jpg'
 import { TiTick } from "react-icons/ti";
+import FullStack from './FullStack';
+
 
 const OurCourses = () => {
+
   return (
     <>
       <h1 className='text-2xl sm:text-5xl font-bold text-center mb-4'>
@@ -24,8 +29,8 @@ const OurCourses = () => {
           <h2 className='flex items-center'> <TiTick className="text-green-600"/> <p><strong>Opportunities:</strong> Full Stack Developer, Software Engineer & much more.</p></h2>
           <h2 className='flex items-center'> <TiTick className="text-green-600"/>100% live learning with expert instructors.</h2>
           <h2 className='flex items-center'> <TiTick className="text-green-600"/>Pay After Placement</h2>
-          <button className='bg-[#4e51f0] p-1 m-auto w-fit px-5 rounded-full text-white '>View More</button>
-          <button className='bg-[#e44141] text-white p-1 w-fit px-4 m-auto rounded-full'>Buy Now</button>
+          <Link to="/ourCourses/fullStack"  className='bg-[#4e51f0] p-1 m-auto w-fit px-5 rounded-full text-white '  ><button  >View More</button></Link>
+          <button className='bg-[#e44141] text-white p-1 w-fit px-4 m-auto rounded-full'  >Buy Now</button>
         </div>
 
         <div className='flex flex-col font-semibold gap-3 shadow-2xl rounded-md p-2 '>
@@ -36,7 +41,7 @@ const OurCourses = () => {
           <h2 className='flex items-center'> <TiTick className="text-green-600"/> <p><strong>Opportunities:</strong> Full Stack Developer, Software Engineer & much more.</p></h2>
           <h2 className='flex items-center'> <TiTick className="text-green-600"/>100% live learning with expert instructors.</h2>
           <h2 className='flex items-center'> <TiTick className="text-green-600"/>Pay After Placement</h2>
-          <button className='bg-[#4e51f0] p-1 m-auto w-fit px-5 rounded-full text-white '>View More</button>
+          <Link to="/ourCourses/Python" className='bg-[#4e51f0] p-1 m-auto w-fit px-5 rounded-full text-white '  ><button >View More</button></Link>
           <button className='bg-[#e44141] text-white p-1 w-fit px-4 m-auto rounded-full'>Buy Now</button>
         </div>
 
@@ -48,10 +53,11 @@ const OurCourses = () => {
           <h2 className='flex items-center'> <TiTick className="text-green-600"/> <p><strong>Opportunities:</strong> Full Stack Developer, Software Engineer & much more.</p></h2>
           <h2 className='flex items-center'> <TiTick className="text-green-600"/>100% live learning with expert instructors.</h2>
           <h2 className='flex items-center'> <TiTick className="text-green-600"/>Pay After Placement</h2>
-          <button className='bg-[#4e51f0] p-1 m-auto w-fit px-5 rounded-full text-white '>View More</button>
+          <Link to="/ourCourses/DigitalMar" className='bg-[#4e51f0] p-1 m-auto w-fit px-5 rounded-full text-white '  ><button >View More</button></Link>
           <button className='bg-[#e44141] text-white p-1 w-fit px-4 m-auto rounded-full'>Buy Now</button>
         </div>
       </div>
+     
     </>
   )
 }

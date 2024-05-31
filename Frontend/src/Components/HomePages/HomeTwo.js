@@ -3,7 +3,7 @@ import 'tailwindcss/tailwind.css';
 
 const images = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0_3sW8oAMMAL68hW0J691ZlB5VaEroSQ5jw&s',
-  'https://www.nickindia.com/wp-content/themes/nick/assets/images/mp10motu.png',
+  'https://i.pinimg.com/736x/91/a2/f9/91a2f91d5b755678023430eeece0aeed.jpg',
   'https://cdna.artstation.com/p/assets/images/images/044/400/794/large/luchia-kulanta-doggy-don-1.jpg?1639900174',
 ];
 
@@ -13,7 +13,7 @@ const HomeTwo = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 

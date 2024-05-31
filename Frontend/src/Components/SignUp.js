@@ -7,12 +7,12 @@ import logo from '../Assets/logo1.png'
 const SignUp = ({onClose}) => {
   return (
     <>
-      <p className='text-3xl ml-auto p-10 text-black mt-10' onClick={onClose}>x</p>
-    <div className='flex flex-col md:flex-row justify-evenly items-center  md:h-full  '>
-    <div className=''>
+    <div className='flex flex-col md:flex-row justify-evenly items-center  md:h-full  mt-16 m-8'>
+    {/* <div className=''>
       <img src={logo} alt="logo"  className='h-64 w-80 md:h-full md:w-full'/>
-    </div>
+    </div> */}
     <div className='shadow-2xl p-2 flex flex-col gap-3 justify-center w-full max-w-80'>
+    <p className='text-3xl ml-auto  text-black ' onClick={onClose}>x</p>
       <h1 className='font-bold font-serif text-xl sm:text-2xl text-center'>Create account</h1>
       <form action="" className='flex flex-col justify-center gap-3'>
         <input className='border-2 pl-2 rounded' type="email" placeholder='Email Address' />
