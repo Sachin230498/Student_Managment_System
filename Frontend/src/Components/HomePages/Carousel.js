@@ -5,6 +5,7 @@ const images = [
   'https://grras.com/files/sgbaxnrabaysf8ugrxu6/blog_image_mern_stck.jpeg?s=940x350',
   'https://www.mindinventory.com/blog/wp-content/uploads/2022/10/python-developer.png',
   'https://5.imimg.com/data5/UA/SQ/MY-45949799/digital-marketing-services-500x500.png',
+  'https://5.imimg.com/data5/UA/SQ/MY-45949799/digital-marketing-services-500x500.png',
 ];
 
 const Carousel = () => {
@@ -13,7 +14,7 @@ const Carousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); 
+    }, 2000); 
     return () => clearInterval(interval);
   }, []);
 
