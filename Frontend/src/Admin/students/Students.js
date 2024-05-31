@@ -114,7 +114,7 @@ export default function Students() {
           <h2 className="text-2xl md:text-3xl font-bold">Students</h2>
           <button
             onClick={() => setShowAddStud(true)}
-            className="bg-blue-400 text-white px-4 py-2 rounded-lg"
+            className="bg-blue-300 text-black px-4 py-2 rounded-lg shadow-md hover:bg-indigo-100 transition duration-300 ease-out hover:ease-in"
           >
             Add Student
           </button>
@@ -163,7 +163,7 @@ export default function Students() {
         )}
 
         <div className="flex justify-end items-center w-full  gap-8 mt-4 md:mt-0 md:float-right mb-4  ">
-          <div className="flex items-center w-fit  gap-2 bg-blue-900 rounded-xl  h-10">
+          <div className="flex items-center w-fit  gap-2 bg-indigo-600 rounded-lg shadow-md	  h-10 p-5">
             <CiHeadphones className="text-white" />
             <button className="text-white">Support</button>
           <IoIosArrowDropup className="text-2xl cursor-pointer text-white" />
