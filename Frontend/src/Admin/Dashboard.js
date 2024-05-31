@@ -321,7 +321,7 @@ const Dashboard = () => {
         <Header />
         <div className="flex flex-col p-6 space-y-6">
           <header className="flex-col items-center mb-6">
-            <h1 className="text-3xl font-bold">Welcome.</h1>
+            <h1 className="text-3xl font-bold">Welcome guys.</h1>
             <p className='mb-10'> Navigate the future of education with Shanti Academy</p>
             <div className="flex items-center space-x-10">
               <div className="flex bg-purple-200 rounded-xl w-80 p-4">
