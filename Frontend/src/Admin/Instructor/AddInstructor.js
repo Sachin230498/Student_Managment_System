@@ -89,6 +89,11 @@ export default function AddInstructor({onClose}) {
 
             </div>
 
+            <div class="mb-4">
+        <label class="block mb-1 font-medium" for="course-image">Instructor Profile</label>
+        <input type="file" id="course-image" class="w-full px-3 py-2 border rounded"/>
+      </div>
+
 
 
 
