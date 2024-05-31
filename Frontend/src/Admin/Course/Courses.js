@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { CiSearch } from "react-icons/ci";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import { CiHeadphones } from "react-icons/ci";
-import AddInstructor from './AddInstructor';
 import LeftNavbar from '../students/LeftNavbar';
 import Header from '../students/Header';
+import Addcourses from './Addcourses';
 
-export default function Instructor() {
+export default function Courses() {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
-  const [showAddInstructor, setShowAddnIstructor] = useState(false);
+  const [showAddCourses, setShowAddCourses] = useState(false);
 
   return (
     <div className="flex flex-col md:flex-row">
@@ -20,8 +20,8 @@ export default function Instructor() {
         <Header />
 
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl md:text-3xl font-bold">Instructor</h2>
-          <button onClick={() => setShowAddnIstructor(true)} className="bg-blue-400 text-white px-4 py-2 rounded-lg">Add Instructor</button>
+          <h2 className="text-2xl md:text-3xl font-bold">Courses</h2>
+          <button onClick={() => setShowAddCourses(true)} className="bg-blue-400 text-white px-4 py-2 rounded-lg">Add Courses</button>
         </div>
 
         <div className="flex flex-col sm:flex-row mb-4 space-x-2 gap-y-2">
@@ -52,7 +52,7 @@ export default function Instructor() {
 
 
 
-        <h3 className='flex justify-center text-3xl font-bold mt-36'>No Instructor at this time</h3>
+        <h3 className='flex justify-center text-3xl font-bold mt-36'>No Courses at this time</h3>
         <p className='flex justify-center'>Instructor will appear here after they enroll in your academy</p>
 
 
@@ -64,7 +64,7 @@ export default function Instructor() {
           </div>
         </div>
 
-        {showAddInstructor && <AddInstructor className='device-addDevice' onClose={() => setShowAddnIstructor(false)} />}
+        {showAddCourses && <Addcourses className='device-addDevice' onClose={() => setShowAddCourses(false)} />}
       </div>
 
     </div>
