@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import Students from '../Admin/students/Students';
 import Instructor from '../Admin/Instructor/instructor';
 // import AddInstructor from '../Admin/Instructor/AddInstructor';
