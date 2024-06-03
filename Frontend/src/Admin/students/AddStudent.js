@@ -1,7 +1,5 @@
-
 import React, { useState } from 'react';
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { RiArrowDropDownLine } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 
 export default function AddStudent({ onClose, onAddStudent }) {
@@ -57,26 +55,33 @@ export default function AddStudent({ onClose, onAddStudent }) {
                 />
               </div>
               <div className="relative flex-1">
-                <RiArrowDropDownLine className='absolute left-14 top-12 transform -translate-y-1/2 text-gray-500' />
                 <label className="block mb-1 font-medium">Class</label>
-                <input
-                  type="text"
+                <select
                   value={studentClass}
                   onChange={(e) => setStudentClass(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded"
                   required
-                />
+                >
+                  <option value="" disabled>Select class</option>
+                  <option value=" 1">MERN </option>
+                  <option value=" 2">Python</option>
+                  <option value=" 3">React</option>
+                  <option value="4">Digital Marketing</option>
+                </select>
               </div>
               <div className="relative flex-1">
-                <RiArrowDropDownLine className='absolute left-20 top-12 transform -translate-y-1/2 text-gray-500' />
                 <label className="block mb-1 font-medium">Gender</label>
-                <input
-                  type="text"
+                <select
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded"
                   required
-                />
+                >
+                  <option value="" disabled>Select gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
               </div>
             </div>
             <div className='grid grid-cols-2 gap-y-6 gap-x-6'>
@@ -133,4 +138,3 @@ export default function AddStudent({ onClose, onAddStudent }) {
     </div>
   );
 }
-
