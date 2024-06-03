@@ -21,7 +21,7 @@ export default function Courses() {
 
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl md:text-3xl font-bold">Courses</h2>
-          <button onClick={() => setShowAddCourses(true)} className="bg-blue-400 text-white px-4 py-2 rounded-lg">hiiii Add Courses</button>
+          <button onClick={() => setShowAddCourses(true)} className="bg-blue-400 text-white px-4 py-2 rounded-lg"> Add Courses</button>
         </div>
 
         <div className="flex flex-col sm:flex-row mb-4 space-x-2 gap-y-2">
