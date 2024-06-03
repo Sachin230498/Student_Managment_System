@@ -119,7 +119,7 @@ export default function Courses() {
       <tr>
         <td className="p-2 border ">Python</td>
         <td className="p-2 border flex justify-center space-x-2">
-          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View</button>
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View hiiii</button>
           <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-700">Add Course</button>
         </td>
       </tr>
