@@ -53,10 +53,10 @@ export default function Courses() {
 
 
         <h3 className='flex justify-center text-3xl font-bold mt-36'>No Courses at this time</h3>
-        <p className='flex justify-center'>Instructor will appear here after they enroll in your academy</p>
+        <p className='flex justify-center'>Instructor will appear here after they enroll in your academy</p> 
 
 
-        <div className="flex justify-end items-center w-full  gap-8 mt-4 md:mt-0 md:float-right mb-4  ">
+        <div className="flex justify-end items-center w-full  gap-8 mt-4 md:mt-0 md:float-right mb-4 ">
           <div className="flex items-center w-fit mt-32  gap-2 bg-blue-900 rounded-xl  h-10">
             <CiHeadphones className="text-white" />
             <button className="text-white">Support</button>
