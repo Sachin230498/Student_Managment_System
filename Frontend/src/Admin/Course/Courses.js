@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { CiSearch } from "react-icons/ci";
-import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
-import { CiHeadphones } from "react-icons/ci";
+import { IoIosArrowDropdown } from "react-icons/io";
+// import { CiHeadphones } from "react-icons/ci";
 import LeftNavbar from '../students/LeftNavbar';
 import Header from '../students/Header';
 import Addcourses from './Addcourses';
@@ -51,7 +51,7 @@ export default function Courses() {
         </div>
 
 
-
+{/* 
         <h3 className='flex justify-center text-3xl font-bold mt-36'>No Courses at this time</h3>
         <p className='flex justify-center'>Instructor will appear here after they enroll in your academy</p> 
 
@@ -62,7 +62,81 @@ export default function Courses() {
             <button className="text-white">Support</button>
             <IoIosArrowDropup className="text-2xl cursor-pointer text-white" />
           </div>
-        </div>
+        </div> */}
+
+
+{/* 
+<div className="p-6 bg-white shadow rounded-lg " >
+              
+              <table className="w-full border">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="p-2 border">Courses</th>
+                    <th className="p-2 border">Details</th>
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-2 border">Full stack developer</td>
+                    <td className="p-2 border">PRE43178</td>
+                 
+                  </tr>
+                  <tr>
+                    <td className="p-2 border">Python</td>
+                    <td className="p-2 border">PRE43174</td>
+                 
+                  </tr>
+
+                  <tr>
+                    <td className="p-2 border">Marketing</td>
+                    <td className="p-2 border">PRE43187</td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div> */}
+
+
+
+
+<div className="p-6 bg-white shadow rounded-lg">
+  <table className="w-full border">
+    <thead className="bg-gray-100">
+      <tr>
+        <th className="p-2 border">Courses</th>
+        <th className="p-2 border">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="p-2 border">Full stack developer</td>
+        <td className="p-2 border flex justify-center space-x-2">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View</button>
+          <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-700">Add Course</button>
+        </td>
+      </tr>
+      <tr>
+        <td className="p-2 border ">Python</td>
+        <td className="p-2 border flex justify-center space-x-2">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View</button>
+          <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-700">Add Course</button>
+        </td>
+      </tr>
+      <tr>
+        <td className="p-2 border"> Digital Marketing</td>
+        <td className="p-2 border flex  justify-center space-x-2">
+          <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View</button>
+          <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-700">Add Course</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
 
         {showAddCourses && <Addcourses className='device-addDevice' onClose={() => setShowAddCourses(false)} />}
       </div>
