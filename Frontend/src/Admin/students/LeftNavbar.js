@@ -133,30 +133,30 @@ export default function LeftNavbar() {
           <IoClose className="text-black text-2xl cursor-pointer md:hidden" onClick={closeSidebar} />
         </div>
         <hr />
-        <ul className="p-4 pt-20 text-black">
-          <li className="mb-12 text-xl hover:bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-lg">
+        <ul className="p-4 pt-20 text-black ">
+          <li className="mb-12 text-xl hover:bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-lg ">
             <Link to="/dashboard" className="flex items-center text-primary p-2" onClick={closeSidebar}>
-              <MdOutlineDashboard className="mr-2" /> <div className="hidden md:block">Dashboard</div>
+              <MdOutlineDashboard className="mr-2" /> <div className="hidden md:block sm:block">Dashboard</div>
             </Link>
           </li>
           <li className="mb-12 text-xl hover:bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-lg">
             <Link to="/instructor" className="flex items-center text-primary p-2" onClick={closeSidebar}>
-              <GiTeacher className="mr-2" /> <div className="hidden md:block">Instructor</div>
+              <GiTeacher className="mr-2" /> <div className="hidden md:block sm:block">Instructor</div>
             </Link>
           </li>
           <li className="mb-12 text-xl relative  rounded-lg">
             <div className="hover:bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-lg flex justify-between items-center text-primary cursor-pointer p-2" onClick={toggleStudentDropdown}>
               <div className='flex items-center'>
                 <PiStudentBold className="mr-2" />
-                <div className="hidden md:block">Students</div>
+                <div className="hidden md:block sm:block">Students</div>
               </div>
               {showStudentDropdown ? <RiArrowDropUpLine size={24} /> : <RiArrowDropDownLine size={24} />}
             </div>
 
             {showStudentDropdown && (
               <div className="mt-2 w-40 rounded-md shadow-lg z-10">
-                <div className="px-2 py-2 rounded-md shadow bg-transparent">
-                  <Link to="/classes" className="block px-4 py-2 text-sm font-semibold text-black rounded-lg" onClick={closeSidebar}>
+                <div className="px-2 py-2 rounded-md shadow bg-transparent sm:block">
+                  <Link to="/students" className="block px-4 py-2 text-sm font-semibold text-black rounded-lg" onClick={closeSidebar}>
                     All Students
                   </Link>
                   <Link to="/upgrade" className="block px-4 py-2 text-sm font-semibold text-black rounded-lg" onClick={closeSidebar}>
@@ -168,17 +168,17 @@ export default function LeftNavbar() {
           </li>
           <li className="mb-12 text-xl hover:bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-lg">
             <Link to="/course" className="flex items-center text-primary p-2" onClick={closeSidebar}>
-              <FaBookReader className="mr-2" /> <div className="hidden md:block">Courses</div>
+              <FaBookReader className="mr-2" /> <div className="hidden md:block sm:block">Courses</div>
             </Link>
           </li>
           <li className="mb-12 text-xl hover:bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-lg">
             <Link to="/billing" className="flex items-center text-primary p-2" onClick={closeSidebar}>
-              <RiBankFill className="mr-2" /> <div className="hidden md:block">Billing</div>
+              <RiBankFill className="mr-2" /> <div className="hidden md:block sm:block">Billing</div>
             </Link>
           </li>
           <li className="mb-12 text-xl hover:bg-gradient-to-r from-indigo-500 to-indigo-300 rounded-lg">
             <Link to="/settings" className="flex items-center text-primary p-2" onClick={closeSidebar}>
-              <IoSettingsSharp className="mr-2" /> <div className="hidden md:block">Settings and Profile</div>
+              <IoSettingsSharp className="mr-2" /> <div className="hidden md:block sm:block">Settings and Profile</div>
             </Link>
           </li>
         </ul>
