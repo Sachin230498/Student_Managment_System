@@ -5,7 +5,7 @@ import Instructor from '../Admin/Instructor/instructor';
 // import AddInstructor from '../Admin/Instructor/AddInstructor';
 import Dashboard from '../Admin/Dashboard';
 import Courses from "../Admin/Course/Courses"
-
+import Addoncourse from '../Admin/Course/Addoncourse';
 
 export default function Routers() {
   return (

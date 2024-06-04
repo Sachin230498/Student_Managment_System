@@ -37,18 +37,9 @@ export default function AddInstructor({onClose}) {
           />
         </div>
 
-        <div className="relative flex-1">
-          <RiArrowDropDownLine className='absolute left-14 top-12 transform -translate-y-1/2 text-gray-500' />
+       
 
-            <label className="block mb-1 font-medium">Class</label>
-            <input
-              type="text"
-              placeholder='Class'
-              className="w-full px-3 py-2 border border-gray-300 rounded"
-            />
-          </div>
-
-          <div className="relative flex-1">
+          {/* <div className="relative flex-1">
           <RiArrowDropDownLine className='absolute left-20 top-12 transform -translate-y-1/2 text-gray-500' />
 
             <label className="block mb-1 font-medium">Gender</label>
@@ -57,7 +48,19 @@ export default function AddInstructor({onClose}) {
               placeholder='Gender'
               className="w-full px-3 py-2 border border-gray-300 rounded"
             />
-          </div>
+          </div> */}
+
+               <div class="relative  space-x-4 flex-1 mt-5">
+                <select name="class" class= "w-full mt-2 p-2 border border-gray-300 rounded-md">
+                    <option value="">Gender</option>
+                    <option value="class-1">Male</option>
+                    <option value="class-2">Female</option>
+                </select>
+
+            </div>
+
+
+
 
         </div>
 
