@@ -125,7 +125,7 @@ export default function Addcourses({onClose}) {
       <div className='flex items-center gap-24 mb-16'>
         <div className='flex items-center gap-2 cursor-pointer'>
           <IoIosAddCircleOutline className='text-gray-700' />
-          <p>Add another h</p>
+          <p>Add another </p>
         </div>
         <button className='bg-gray-300 flex items-center text-gray-700 rounded-md mt-4 px-6 py-2 '>Add Course</button>
       </div>
