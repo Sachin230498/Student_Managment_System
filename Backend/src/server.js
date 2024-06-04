@@ -3,8 +3,7 @@ const express=require('express');
 const cors = require('cors');
 const dotenv=require('dotenv')
 const bodyParser=require('body-parser')
-const studentRoutes=require('./routes/student')
-const corsMiddleware = require('./middleware/cors');
+const auth = require("./controller/authController")
 
 //load environmnet variables 
 dotenv.config();
@@ -15,15 +14,10 @@ app.use(cors())
 //connect to db
 require('./config/db')
 
-
-// app.use(corsMiddleware);
-
-
-// // app.use(express.json()); //for parsing application/json
-app.use('/api', studentRoutes);
+app.use("/api" , auth)
 
 
-console.log(process.env.MONGO_URL)
+
 
 const PORT=8081
 app.listen( PORT,()=>{
