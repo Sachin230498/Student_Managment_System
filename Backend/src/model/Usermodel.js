@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const instructorSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
     subject: {
         type: String,
-        required: true
+    
     },
     gender: {
         type: String,
@@ -27,17 +27,14 @@ const instructorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    role:{
-        type:String,
-        enum:["student", "instructor", "admin"],
-        default:"instructor",
+    role: { 
+        type: String, required: true, enum: ['Admin', 'Instructor', 'Student'],         default:"Student",
 
-    },
-}, 
-{
-    timestamps: true
+     }
+
+
 });
 
-const Instructor = mongoose.model('Instructor', instructorSchema);
+const User = mongoose.model('Instructor', UserSchema);
 
-module.exports = Instructor;
+module.exports = User;

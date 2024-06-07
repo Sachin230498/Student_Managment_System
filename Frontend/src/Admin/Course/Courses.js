@@ -11,6 +11,35 @@ export default function Courses() {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
   const [showAddCourses, setShowAddCourses] = useState(false);
+  const [courses, setCourses] = useState([]);
+
+
+
+
+
+  const handleAddCourse = async (course) => {
+    console.log('Adding course:', course);
+    try {
+      const response = await fetch('http://localhost:8081/api/course', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(course),
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Network response was not ok: ${text}`);
+      }
+      const newCourse = await response.json();
+      console.log('New course added:', newCourse);
+      setCourses(prevCourses => [...prevCourses, newCourse]);
+      setShowAddCourses(false);
+    } catch (error) {
+      console.error('Error adding course:', error);
+    }
+  };
+
 
   return (
     <div className="flex flex-col md:flex-row">

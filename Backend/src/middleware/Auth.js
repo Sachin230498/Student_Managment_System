@@ -9,7 +9,7 @@ const auth = (req, res, next) => {
     return res.status(401).send("Access denied. No token provided.");
   }
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, "abcd");
     req.user = decoded;
     next();
   } catch (error) {

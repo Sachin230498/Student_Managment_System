@@ -63,10 +63,10 @@ export default function AddStudent({ onClose, onAddStudent }) {
                   required
                 >
                   <option value="" disabled>Select class</option>
-                  <option value=" 1">MERN </option>
-                  <option value=" 2">Python</option>
-                  <option value=" 3">React</option>
-                  <option value="4">Digital Marketing</option>
+                  <option >MERN </option>
+                  <option >Python</option>
+                  <option>React</option>
+                  <option>Digital Marketing</option>
                 </select>
               </div>
               <div className="relative flex-1">

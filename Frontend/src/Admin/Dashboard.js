@@ -1,5 +1,5 @@
 
-import React from 'react';
+import {React, useState} from 'react';
 import LeftNavbar from './students/LeftNavbar';
 import Header from './students/Header';
 import { PiStudentFill } from "react-icons/pi";
@@ -7,12 +7,19 @@ import { GrUserWorker } from "react-icons/gr";
 import { MdOutlineMenuBook } from "react-icons/md";
 import 'react-circular-progressbar/dist/styles.css';
 import { Pie } from 'react-chartjs-2';
-import 'chart.js/auto'; // This line imports the required chart.js components
+import 'chart.js/auto'; 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 const Dashboard = () => {
   const studentsPercentage = 50; 
   const instructorsPercentage = 30; 
-  const coursesPercentage = 20; 
+  const coursesPercentage = 20;
+  const [startDate, setStartDate] = useState(null);
+  const [classStartDate, setClassStartDate] = useState(null);
+ 
 
   const pieData = {
     labels: ['Students', 'Instructors', 'Courses'],
@@ -28,6 +35,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
+      
       <LeftNavbar />
 
       <div className="flex flex-col flex-1 p-4 md:p-6">
@@ -37,7 +45,7 @@ const Dashboard = () => {
             <h1 className="text-3xl font-bold">Welcome guys.</h1>
             <p className='mb-10'> Navigate the future of education with Shanti Academy</p>
             <div className="flex items-center space-x-10">
-              <div className="flex bg-purple-200 rounded-xl w-80 p-4">
+              <div className="flex bg-purple-200 rounded-xl w-80 p-4 transform transition-transform duration-300 hover:scale-110">
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-xl font-semibold">Students</h3>
                   <p className="text-2xl">15k</p>
@@ -47,7 +55,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="flex bg-blue-200 rounded-xl w-80 p-4">
+              <div className="flex bg-blue-200 rounded-xl w-80 p-4 transform transition-transform duration-300 hover:scale-110 ">
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-xl font-semibold">Instructor</h3>
                   <p className="text-2xl">2000+</p>
@@ -57,7 +65,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="flex bg-orange-200 rounded-xl w-80 p-4">
+              <div className="flex bg-orange-200 rounded-xl w-80 p-4 transform transition-transform duration-300 hover:scale-110">
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-xl font-semibold">Courses</h3>
                   <p className="text-2xl">100+</p>
@@ -71,18 +79,35 @@ const Dashboard = () => {
 
           <div className="grid grid-cols-2 gap-6">
             <div className="p-6 bg-white shadow rounded-lg">
-              <h2 className="text-2xl font-bold mb-4">Class Routine</h2>
+              <h2 className=" text-2xl font-bold mb-4">Class Routine</h2>
               <div className="space-y-4">
+                <div>
+                  <label className="block mb-1 font-semibold">Start day</label>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    dateFormat="dd/MM/yyyy"
+                    className="w-full p-2 border rounded"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-1 font-semibold">Start class</label>
+                  <DatePicker
+                    selected={classStartDate}
+                    onChange={(date) => setClassStartDate(date)}
+                    dateFormat="dd/MM/yyyy"
+                    className="w-full p-2 border rounded"
+                  />
+                </div>
                 <select className="w-full p-2 border rounded">
-                  <option>Select your day</option>
+                <option value="" disabled>Select class</option>
+                 <option>MERN</option>
+                  <option>Python</option>
+                  <option>Digital Marketing</option>
+                  <option>React</option>
+                  <option>AI</option>
                 </select>
-                <select className="w-full p-2 border rounded">
-                  <option>Select your class</option>
-                </select>
-                <select className="w-full p-2 border rounded">
-                  <option>Section</option>
-                </select>
-                <button className="w-full p-2 bg-blue-300 text-black rounded shadow-md hover:bg-indigo-200">Download routine (pdf)</button>
+                <button className="w-full p-2 bg-blue-300 text-black rounded shadow-md hover:bg-indigo-200 transition duration-300 ease-out hover:ease-in">Download routine (pdf)</button>
               </div>
             </div>
 
@@ -92,7 +117,7 @@ const Dashboard = () => {
           </div>
 
             <div className="p-6 bg-white shadow rounded-lg">
-              <h2 className="text-2xl font-bold mb-4">Star Students</h2>
+              <h2 className="text-2xl flex  font-bold mb-4">Star Students</h2>
               <table className="w-full border">
                 <thead className="bg-gray-100">
                   <tr>
@@ -104,19 +129,19 @@ const Dashboard = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="p-2 border">Evelyn Harper</td>
+                    <td className="p-2 border">Lavisha Jain</td>
                     <td className="p-2 border">PRE43178</td>
                     <td className="p-2 border">1185</td>
                     <td className="p-2 border">98%</td>
                   </tr>
                   <tr>
-                    <td className="p-2 border">Diana Plenty</td>
+                    <td className="p-2 border">Mahaveer Jain</td>
                     <td className="p-2 border">PRE43174</td>
                     <td className="p-2 border">1165</td>
                     <td className="p-2 border">99%</td>
                   </tr>
                   <tr>
-                    <td className="p-2 border">John Millar</td>
+                    <td className="p-2 border">Aditi Jain</td>
                     <td className="p-2 border">PRE43187</td>
                     <td className="p-2 border">1175</td>
                     <td className="p-2 border">99%</td>
@@ -139,7 +164,7 @@ const Dashboard = () => {
             <div className="p-6 bg-white shadow rounded-lg">
               <h2 className="text-2xl font-bold mb-4">New Course</h2>
               <p className="mb-4">Build your career with API</p>
-              <button className="w-full p-2 bg-blue-500 text-white rounded">Enroll Now</button>
+              <button className="w-full p-2 bg-blue-300 text-black rounded shadow-md hover:bg-indigo-200 transition duration-300 ease-out hover:ease-in">Enroll Now</button>
             </div>
           </div>
 
