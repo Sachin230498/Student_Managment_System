@@ -1,16 +1,18 @@
 
 import React, { useState } from 'react';
 import { CiSearch } from "react-icons/ci";
-import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
-import { CiHeadphones } from "react-icons/ci";
+import { IoIosArrowDropdown } from "react-icons/io";
+// import { CiHeadphones } from "react-icons/ci";
 import LeftNavbar from '../students/LeftNavbar';
 import Header from '../students/Header';
 import Addcourses from './Addcourses';
+import Addoncourse from './Addoncourse';
 
 export default function Courses() {
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
   const [showAddCourses, setShowAddCourses] = useState(false);
+<<<<<<< HEAD
   const [courses, setCourses] = useState([]);
 
 
@@ -39,6 +41,9 @@ export default function Courses() {
       console.error('Error adding course:', error);
     }
   };
+=======
+  const [showAddCourse, setShowAddCourse] = useState(false);
+>>>>>>> 69288e7a3da15d6240ae49678f47c1aa10364729
 
 
   return (
@@ -50,7 +55,7 @@ export default function Courses() {
 
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl md:text-3xl font-bold">Courses</h2>
-          <button onClick={() => setShowAddCourses(true)} className="bg-blue-400 text-white px-4 py-2 rounded-lg">Add Courses</button>
+          <button onClick={() => setShowAddCourses(true)} className="bg-blue-400 text-white px-4 py-2 rounded-lg"> Add Courses</button>
         </div>
 
         <div className="flex flex-col sm:flex-row mb-4 space-x-2 gap-y-2">
@@ -80,20 +85,48 @@ export default function Courses() {
         </div>
 
 
-
-        <h3 className='flex justify-center text-3xl font-bold mt-36'>No Courses at this time</h3>
-        <p className='flex justify-center'>Instructor will appear here after they enroll in your academy</p>
-
-
-        <div className="flex justify-end items-center w-full  gap-8 mt-4 md:mt-0 md:float-right mb-4  ">
-          <div className="flex items-center w-fit mt-32  gap-2 bg-blue-900 rounded-xl  h-10">
-            <CiHeadphones className="text-white" />
-            <button className="text-white">Support</button>
-            <IoIosArrowDropup className="text-2xl cursor-pointer text-white" />
-          </div>
+        <div className="p-6 bg-white shadow rounded-lg">
+          <table className="w-full border">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="p-2 border">Courses</th>
+                <th className="p-2 border">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="p-2 border">Full stack developer</td>
+                <td className="p-2 border flex justify-center space-x-2">
+                  <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View</button>
+                  <button  onClick={() => setShowAddCourse(true)} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-700">Add Course</button>
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border ">Python</td>
+                <td className="p-2 border flex justify-center space-x-2">
+                  <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View </button>
+                  <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-700">Add Course</button>
+                </td>
+              </tr>
+              <tr>
+                <td className="p-2 border"> Digital Marketing</td>
+                <td className="p-2 border flex  justify-center space-x-2">
+                  <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View </button>
+                  <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-green-700">Add Course</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
+
+
+
+
         {showAddCourses && <Addcourses className='device-addDevice' onClose={() => setShowAddCourses(false)} />}
+        {showAddCourse && <Addoncourse className='device-addDevice' onClose={() => setShowAddCourse(false)} />}
+
+
       </div>
 
     </div>
