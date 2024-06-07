@@ -126,6 +126,7 @@ export default function AddStudent({ onClose, onAddStudent }) {
               </div>
             </div>
           </div>
+
           <div className='flex items-center gap-24 mb-16'>
             <div className='flex items-center gap-2 cursor-pointer'>
               <IoIosAddCircleOutline className='text-gray-700' />
@@ -133,6 +134,7 @@ export default function AddStudent({ onClose, onAddStudent }) {
             </div>
             <button type="submit" className='bg-blue-300 hover:bg-indigo-100 transition duration-300 ease-out hover:ease-in flex items-center text-gray-700 rounded-md px-6 py-2'>Add Student</button>
           </div>
+          
         </form>
       </div>
     </div>

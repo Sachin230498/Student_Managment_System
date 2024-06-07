@@ -16,8 +16,8 @@ function App() {
     {/* <Header/> */}
     {/* <Home/> */}
     {/* <Footer/> */}
-    {/* <AdminRoutes/> */}
-    <AllRoutes/>
+    <AdminRoutes/>
+    {/* <AllRoutes/> */}
   
     
     </>
