@@ -2,9 +2,7 @@
 //db.js
 const mongoose=require("mongoose")
 
-mongoose.connect(process.env.MONGO)
 
-const mongoose=require("mongoose")
 
 mongoose.connect("mongodb://0.0.0.0:27017/SMS")
 

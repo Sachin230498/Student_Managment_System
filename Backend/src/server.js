@@ -11,19 +11,13 @@ dotenv.config();
 
 const app= express();
 
-dotenv.config()
-
 app.use(bodyParser.json());
 app.use(cors());
-
-
+app.get('/data',(req,res)=>{
+    res.send("server is working ")
+})
+app.use('/api',auth)
 require('./config/db')
-
-
-
-
-
-
 const PORT=8081
 app.listen( PORT,()=>{
     console.log(`server is listening on http://localhost:${PORT}`)

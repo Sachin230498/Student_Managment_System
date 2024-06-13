@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "@coreui/coreui": "^5.0.2",
+    "@emailjs/browser": "^4.3.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.2",
     "chart.js": "^4.4.3",
     "date-fns": "^3.6.0",
     "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.1",
     "react": "^18.3.1",
     "react-bootstrap-validation": "^0.1.11",
@@ -21,7 +24,9 @@
     "react-router": "^6.23.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@floating-ui/react": "0.26.16",
+  "react-onclickoutside": "^6.8.0"
   },
   "scripts": {
     "start": "react-scripts start",

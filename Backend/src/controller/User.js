@@ -54,7 +54,7 @@ const teacherLogIn = async (req, res) => {
       );
 
   
-              res.status(200).send({ message: "Login successful",token });
+              res.status(200).send({ message: "Login successful",token,role:teacher.role });
             } else {
                 res.status(401).send({ message: "Invalid password" });
             }
@@ -65,50 +65,46 @@ const teacherLogIn = async (req, res) => {
         res.status(500).json(err);
     }
 };
-// router.put(
-//     "/promote/:id",
-//     Auth,
-//     allowRoles("Admin"),
-//     async (req, res) => {
-//       try {
-//         const user = await Instructor.findByIdAndUpdate(
-//           req.params.id,
-//           { role: "instructor" },
-//           { new: true }
-//         );
-//         if (!user) {
-//           return res.status(404).send("User not found");
-//         }
-//         res.status(200).send("User promoted to instructor");
-//       } catch (error) {
-//         console.error("Error:", error);
-//         res.status(500).send("Failed to promote user");
-//       }
-//     }
-//   );
-//   router.put(
-//     "paid/:id",
-//     Auth,
-//     allowRoles("Admin"),
-//     async(req,res)=>{
-//         try {
-//             const user= await Instructor.findByIdAndUpdate(
-//                 req.params.id,
-//                 {subject:"none"},
-//                 {new:true}
-//             );
-//             if(!user){
-//                 return res.status(404).send("user not found");
+const promoteUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, { role: "Instructor" }, { new: true });
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        res.status(200).send("User promoted to Instructor");
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to promote user");
+    }
+};
 
-//             }
-//             res.status(200).send("User promoted to paid course")
-//         } catch (error) {
-//             console.error("Error:",error)
-//             res.status(500).send("Failed to promote Student ")
-            
-//         }
-//     }
-//   );
+// Set a user's subject to "Paid"
+const setPaidStatus = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, { subject: "Paid" }, { new: true });
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        res.status(200).send("User subject set to Paid");
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to update user subject");
+    }
+};
+
+// Delete a user
+const deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+        res.status(200).send("User deleted successfully");
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to delete user");
+    }
+};
 
   
 
@@ -270,6 +266,10 @@ const teacherLogIn = async (req, res) => {
 module.exports = {
     teacherRegister,
     teacherLogIn,
+    promoteUser,
+    setPaidStatus,
+    deleteUser
+
     // getTeachers,
     // getTeacherDetail,
     // updateTeacherSubject,

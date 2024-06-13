@@ -9,7 +9,7 @@ const CourseSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    instructor: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
@@ -17,6 +17,10 @@ const CourseSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    image:{
+        type:"String",
+        required:true,
+    }
 });
 
 const Course = mongoose.model('Course', CourseSchema);

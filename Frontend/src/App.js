@@ -1,28 +1,50 @@
-
-import './App.css';
-import Login from '../src/Components/Login'
-import SignUp from '../src/Components/SignUp'
-import Header from './Components/Header'
-import Footer from './Components/Footer'
-import Home from './Components/HomePages/Home';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Login from './Components/Login';
 import AllRoutes from './Routes/AllRoutes';
 import AdminRoutes from './Routes/AdminRoutes';
-import { BrowserRouter as Router } from 'react-router-dom';
-function App() {
-  return (
-    <>
-    {/* <Login/> */}
-    {/* <SignUp/> */}
-    {/* <Header/> */}
-    {/* <Home/> */}
-    {/* <Footer/> */}
-    <AdminRoutes/>
-    {/* <AllRoutes/> */}
-  
-    
-    </>
+import './App.css';
 
+const getUserRole = () => {
+  // Replace this with actual logic to get user role, e.g., from localStorage or API
+  return localStorage.getItem('role');
+};
+
+function App() {
+  const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const role = getUserRole();
+    setRole(role);
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/*" element={<AppRoutes role={role} />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 }
+
+const AppRoutes = ({ role }) => {
+  if (!role) {
+    return <Navigate to="/login" />;
+  }
+
+  if (role === 'Admin' || role === 'Instructor') {
+    return <AdminRoutes />;
+  } else {
+    return <AllRoutes />;
+  }
+};
 
 export default App;

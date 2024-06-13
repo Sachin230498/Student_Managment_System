@@ -102,7 +102,7 @@ export default function Students() {
           <div className="">
             <table className="min-w-full  bg-white border shadow-md rounded-lg overflow:hidden mb-5">
               <thead className="bg-gray-200">
-                <tr>
+                <tr className='text-left'>
                   <th className="py-2 px-4 border-b">Name</th>
                   <th className="py-2 px-4 border-b">Class</th>
                   <th className="py-2 px-4 border-b">Gender</th>

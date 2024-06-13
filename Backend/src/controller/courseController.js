@@ -1,112 +1,3 @@
-// const course = require('../model/course.js');
-// // const student = require('../model/student.js');
-// // const Subject = require('../models/subjectSchema.js');
-// // const Teacher = require('../models/teacherSchema.js');
-
-// const sclassCreate = async (req, res) => {
-//     try {
-//         const sclass = new course({
-//            course: req.body.course,
-//             school: req.body.adminID
-//         });
-
-//         const existingSclassByName = await course.findOne({
-//             course: req.body.course,
-//             school: req.body.adminID
-//         });
-
-//         if (existingSclassByName) {
-//             res.send({ message: 'Sorry this class name already exists' });
-//         }
-//         else {
-//             const result = await sclass.save();
-//             res.send(result);
-//         }
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// };
-
-// const sclassList = async (req, res) => {
-//     try {
-//         let sclasses = await course.find()// retrieve all courses 
-//         if (sclasses.length > 0) {
-//             res.send(sclasses)
-//         } else {
-//             res.send({ message: "No sclasses found" });
-//         }
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// };
-
-// const getSclassDetail = async (req, res) => {
-//     try {
-//         let sclass = await course.findById(req.params.id);
-//         if (sclass) {
-//             res.status(200).send(sclass);
-//         } else {
-//             res.status(404).send({ message: "No class found" });
-//         }
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// }
-
-// const getSclassStudents = async (req, res) => {
-//     try {
-//         let students = await Student.find({ sclassName: req.params.id })
-//         if (students.length > 0) {
-//             let modifiedStudents = students.map((student) => {
-//                 return { ...student._doc, password: undefined };
-//             });
-//             res.send(modifiedStudents);
-//         } else {
-//             res.send({ message: "No students found" });
-//         }
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// }
-
-// // const deleteSclass = async (req, res) => {
-// //     try {
-// //         const deletedClass = await Sclass.findByIdAndDelete(req.params.id);
-// //         if (!deletedClass) {
-// //             return res.send({ message: "Class not found" });
-// //         }
-// //         const deletedStudents = await Student.deleteMany({ sclassName: req.params.id });
-// //         const deletedSubjects = await Subject.deleteMany({ sclassName: req.params.id });
-// //         const deletedTeachers = await Teacher.deleteMany({ teachSclass: req.params.id });
-// //         res.send(deletedClass);
-// //     } catch (error) {
-// //         res.status(500).json(error);
-// //     }
-// // }
-
-// // const deleteSclasses = async (req, res) => {
-// //     try {
-// //         const deletedClasses = await Sclass.deleteMany({ school: req.params.id });
-// //         if (deletedClasses.deletedCount === 0) {
-// //             return res.send({ message: "No classes found to delete" });
-// //         }
-// //         const deletedStudents = await Student.deleteMany({ school: req.params.id });
-// //         const deletedSubjects = await Subject.deleteMany({ school: req.params.id });
-// //         const deletedTeachers = await Teacher.deleteMany({ school: req.params.id });
-// //         res.send(deletedClasses);
-// //     } catch (error) {
-// //         res.status(500).json(error);
-// //     }
-// // }
-
-
-// module.exports = { sclassCreate,sclassList, getSclassDetail };
-// //, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents
-
-
-
-
-
 const Course = require('../model/course');
 const CourseContent = require('../model/courseContent');
 
@@ -126,6 +17,42 @@ const createCourse = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+// Admin updates a course
+const updateCourse = async (req, res) => {
+    const { title, description } = req.body;
+    const courseId = req.params.id;
+
+    try {
+        const course = await Course.findByIdAndUpdate(courseId, { title, description }, { new: true });
+        if (!course) {
+            return res.status(404).send("Course not found");
+        }
+        res.status(200).send({
+            message: 'Course updated successfully',
+            course
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to update course");
+    }
+};
+//admin delete a course
+const deleteCourse = async (req, res) => {
+    try {
+        const course = await Course.findByIdAndDelete(req.params.id);
+        if (!course) {
+            return res.status(404).send("Course not found");
+        }
+        // Optionally, delete all related course content
+        await CourseContent.deleteMany({ course: req.params.id });
+        res.status(200).send("Course deleted successfully");
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to delete course");
+    }
+};
+
+// Instructor adds course content
 
 const addCourseContent = async (req, res) => {
     const { course, title, content } = req.body;
@@ -142,10 +69,48 @@ const addCourseContent = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+// Instructor updates course content
+const updateCourseContent = async (req, res) => {
+    const { title, content } = req.body;
+    const courseContentId = req.params.id;
+
+    try {
+        const courseContent = await CourseContent.findByIdAndUpdate(courseContentId, { title, content }, { new: true });
+        if (!courseContent) {
+            return res.status(404).send("Course content not found");
+        }
+        res.status(200).send({
+            message: 'Course content updated successfully',
+            courseContent
+        });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to update course content");
+    }
+};
+// Instructor deletes course content
+const deleteCourseContent = async (req, res) => {
+    try {
+        const courseContent = await CourseContent.findByIdAndDelete(req.params.id);
+        if (!courseContent) {
+            return res.status(404).send("Course content not found");
+        }
+        res.status(200).send("Course content deleted successfully");
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to delete course content");
+    }
+};
 
 module.exports = {
     createCourse,
     addCourseContent,
+    deleteCourse,    
+    updateCourse,
+    updateCourseContent,
+    deleteCourseContent
+
+
     
 };
 
