@@ -65,6 +65,16 @@ const teacherLogIn = async (req, res) => {
         res.status(500).json(err);
     }
 };
+const getAllStudents = async (req, res) => {
+    try {
+        const students = await User.find({ role: 'Student' });
+        res.status(200).send(students);
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to fetch students");
+    }
+};
+
 const promoteUser = async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(req.params.id, { role: "Instructor" }, { new: true });
@@ -268,7 +278,8 @@ module.exports = {
     teacherLogIn,
     promoteUser,
     setPaidStatus,
-    deleteUser
+    deleteUser,
+    getAllStudents
 
     // getTeachers,
     // getTeacherDetail,

@@ -1,12 +1,12 @@
 //routes/auth.js
 const express = require('express');
-const {   teacherRegister,teacherLogIn } = require('../controller/User');
+const {   teacherRegister,teacherLogIn,getAllStudents } = require('../controller/User');
 // const {sclassCreate, sclassList,getSclassDetail} = require("../controller/courseController")
 const { addStudent, getStudents } = require('../controller/student');
 const auth = require('../middleware/Auth');
 const allowRoles = require('../middleware/roles');
 const  User = require("../model/Usermodel")
-const { createCourse, addCourseContent,deleteCourse,updateCourse, updateCourseContent,deleteCourseContent } = require('../controller/courseController');
+const { createCourse, addCourseContent,deleteCourse,updateCourse, updateCourseContent,deleteCourseContent,getAllCourses,getCourseContent } = require('../controller/courseController');
 const { promoteUser, setPaidStatus, deleteUser } = require('../controller/User');
 
 const router = express.Router();
@@ -16,6 +16,8 @@ const router = express.Router();
 
 router.post('/register', teacherRegister);
 router.post('/login', teacherLogIn);
+router.get('/students', getAllStudents);
+
 
 // router.post('/course',sclassCreate);
 // router.get('/courseList',sclassList);
@@ -25,12 +27,14 @@ router.post('/course', auth, allowRoles('Admin'),
  createCourse);
 router.delete('/course/:id', auth, allowRoles('Admin'), deleteCourse);
 router.put('/course/:id', auth, allowRoles('Admin'), updateCourse);
+router.get('/course', auth, allowRoles('Admin', 'Instructor'), getAllCourses); 
 
 
 
-router.post('/courseContent', auth, allowRoles('Instructor') , addCourseContent);
+router.post('/courseContent', auth, allowRoles('Admin','Instructor') , addCourseContent);
 router.put('/courseContent/:id', auth, allowRoles('Instructor'), updateCourseContent); 
-router.delete('/courseContent/:id', auth, allowRoles('Instructor'), deleteCourseContent); // Route for deleting course content
+router.delete('/courseContent/:id', auth, allowRoles('Instructor'), deleteCourseContent); 
+router.get('/courseDetails/:id/', auth, allowRoles('Admin', 'Instructor'), getCourseContent);
 
 
 

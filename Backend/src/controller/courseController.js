@@ -3,11 +3,21 @@ const CourseContent = require('../model/courseContent');
 
 // Admin creates a new course
 const createCourse = async (req, res) => {
-    const { title, description } = req.body;
+    const { title, instructor, description, duration, startDate, endDate, level, category, price  } = req.body;
     const userId = req.user._id; // Assume user information is set in the req by auth middleware
 
     try {
-        const course = new Course({ title, description, createdBy: userId });
+        const course = new Course({ title,
+            instructor,
+            description,
+            duration,
+            startDate,
+            endDate,
+            level,
+            category,
+            price,
+            user: userId,
+ });
         await course.save();
         res.status(201).send({
             message: 'Course created successfully',
@@ -36,6 +46,19 @@ const updateCourse = async (req, res) => {
         res.status(500).send("Failed to update course");
     }
 };
+// Get all courses
+const getAllCourses = async (req, res) => {
+    try {
+        const courses = await Course.find();
+        res.status(200).send(courses);
+    } catch (error) {
+        res.status(500).send({ message: 'Failed to retrieve courses', error: error.message });
+    }
+};
+
+
+
+
 //admin delete a course
 const deleteCourse = async (req, res) => {
     try {
@@ -88,6 +111,23 @@ const updateCourseContent = async (req, res) => {
         res.status(500).send("Failed to update course content");
     }
 };
+
+// Fetch content for a specific course
+
+const getCourseContent = async (req, res) => {
+    const courseId = req.params.id;
+
+    try {
+        const content = await CourseContent.find({ course: courseId });
+        if (!content) {
+            return res.status(404).send("Course content not found");
+        }
+        res.status(200).send(content);
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send("Failed to fetch course content");
+    }
+};
 // Instructor deletes course content
 const deleteCourseContent = async (req, res) => {
     try {
@@ -99,7 +139,7 @@ const deleteCourseContent = async (req, res) => {
     } catch (error) {
         console.error("Error:", error);
         res.status(500).send("Failed to delete course content");
-    }
+    }4
 };
 
 module.exports = {
@@ -108,7 +148,10 @@ module.exports = {
     deleteCourse,    
     updateCourse,
     updateCourseContent,
-    deleteCourseContent
+    deleteCourseContent,
+    getAllCourses,
+    getCourseContent
+
 
 
     

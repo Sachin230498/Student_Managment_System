@@ -8,4 +8,3 @@ const allowRoles = (...roles) => {
   };
   
   module.exports = allowRoles;
-  

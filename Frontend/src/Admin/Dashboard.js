@@ -34,9 +34,9 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row" >
       
-      <LeftNavbar />
+      <LeftNavbar/>
 
       <div className="flex flex-col flex-1 p-4 md:p-6">
         <Header />

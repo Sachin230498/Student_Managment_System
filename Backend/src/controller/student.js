@@ -1,9 +1,9 @@
-const Student = require('../model/student')
+const Student = require('../model/Usermodel')
 
 const addStudent = async (req, res) => {
   try {
-    const { name, class: studentClass,password, gender, email, phone } = req.body;
-    const newStudent = new Student({ name,password, class: studentClass, gender, email, phone });
+    const { name, email, password, role, gender, phone, subject } = req.body;
+    const newStudent = new Student({  name, email, password, role, gender, phone, subject  });
     await newStudent.save();
     res.status(201).json(newStudent);
   } catch (error) {
@@ -20,9 +20,10 @@ const getStudents = async (req, res) => {
   }
 };
 
+
 module.exports = {
   addStudent,
-  getStudents,
+  getStudents
 };
 // const bcrypt = require('bcrypt');
 // const Student = require('../model/student');

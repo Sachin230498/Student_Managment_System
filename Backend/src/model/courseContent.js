@@ -4,7 +4,6 @@ const CourseContentSchema = new mongoose.Schema({
     course: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'course',
-        required: true,
     },
     title: {
         type: String,
@@ -20,6 +19,6 @@ const CourseContentSchema = new mongoose.Schema({
     },
 });
 
-const CourseContent = mongoose.model('CourseContent', CourseContentSchema);
+const CourseContents = mongoose.model('CourseContents', CourseContentSchema);
 
-module.exports = CourseContent;
+module.exports = CourseContents;
