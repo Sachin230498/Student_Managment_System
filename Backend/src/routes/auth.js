@@ -8,7 +8,7 @@ const allowRoles = require('../middleware/roles');
 const  User = require("../model/Usermodel")
 const { createCourse, addCourseContent,deleteCourse,updateCourse, updateCourseContent,deleteCourseContent,getAllCourses,getCourseContent } = require('../controller/courseController');
 const { promoteUser, setPaidStatus, deleteUser } = require('../controller/User');
-
+const upload= require('../middleware/multer.middleware')
 const router = express.Router();
 
 
@@ -23,7 +23,7 @@ router.get('/students', getAllStudents);
 // router.get('/courseList',sclassList);
 // router.get('/courseDetails/:id',getSclassDetail);
 router.post('/course', auth, allowRoles('Admin'), 
-// upload.single("image"),
+upload.single("image"),
  createCourse);
 router.delete('/course/:id', auth, allowRoles('Admin'), deleteCourse);
 router.put('/course/:id', auth, allowRoles('Admin'), updateCourse);
@@ -31,7 +31,7 @@ router.get('/course', auth, allowRoles('Admin', 'Instructor'), getAllCourses);
 
 
 
-router.post('/courseContent', auth, allowRoles('Admin','Instructor') , addCourseContent);
+router.post('/courseContent', auth, allowRoles('Admin','Instructor') , upload.single("image"), addCourseContent);
 router.put('/courseContent/:id', auth, allowRoles('Instructor'), updateCourseContent); 
 router.delete('/courseContent/:id', auth, allowRoles('Instructor'), deleteCourseContent); 
 router.get('/courseDetails/:id/', auth, allowRoles('Admin', 'Instructor'), getCourseContent);

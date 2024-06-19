@@ -3,11 +3,12 @@ const CourseContent = require('../model/courseContent');
 
 // Admin creates a new course
 const createCourse = async (req, res) => {
-    const { title, instructor, description, duration, startDate, endDate, level, category, price  } = req.body;
+    const { title, instructor, description, duration, startDate, endDate, level, category, price } = req.body;
     const userId = req.user._id; // Assume user information is set in the req by auth middleware
 
     try {
-        const course = new Course({ title,
+        const course = new Course({
+            title,
             instructor,
             description,
             duration,
@@ -17,7 +18,7 @@ const createCourse = async (req, res) => {
             category,
             price,
             user: userId,
- });
+        });
         await course.save();
         res.status(201).send({
             message: 'Course created successfully',
@@ -78,13 +79,21 @@ const deleteCourse = async (req, res) => {
 // Instructor adds course content
 
 const addCourseContent = async (req, res) => {
-    const { course, title, content } = req.body;
+    const { title, content } = req.body;
     const userId = req.user._id; // Assume user information is set in the req by auth middleware
+    const image = req.file ? req.file.path : null; // Assuming you're using multer middleware
+
+    console.log( title, content, image)
 
     try {
-        const courseContent = new CourseContent({ course, title, content, createdBy: userId });
-        await courseContent.save();
+        const courseContent = new CourseContent({ title, content, image, createdBy: userId });
+        console.log(courseContent)
+        const response = await courseContent.save();
+
+        console.log(response)
+
         res.status(201).send({
+            courseContent,
             message: 'Course content added successfully',
             courseContent
         });
@@ -92,6 +101,8 @@ const addCourseContent = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+
 // Instructor updates course content
 const updateCourseContent = async (req, res) => {
     const { title, content } = req.body;
@@ -139,13 +150,13 @@ const deleteCourseContent = async (req, res) => {
     } catch (error) {
         console.error("Error:", error);
         res.status(500).send("Failed to delete course content");
-    }4
+    } 4
 };
 
 module.exports = {
     createCourse,
     addCourseContent,
-    deleteCourse,    
+    deleteCourse,
     updateCourse,
     updateCourseContent,
     deleteCourseContent,
@@ -154,6 +165,6 @@ module.exports = {
 
 
 
-    
+
 };
 
