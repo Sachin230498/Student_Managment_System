@@ -129,19 +129,37 @@ const Dashboard = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="p-2 border">Lavisha Jain</td>
+                    <td className="p-2 border">Lavisha </td>
                     <td className="p-2 border">PRE43178</td>
                     <td className="p-2 border">1185</td>
                     <td className="p-2 border">98%</td>
                   </tr>
                   <tr>
-                    <td className="p-2 border">Mahaveer Jain</td>
+                    <td className="p-2 border">Mahaveer</td>
                     <td className="p-2 border">PRE43174</td>
                     <td className="p-2 border">1165</td>
-                    <td className="p-2 border">99%</td>
+                    <td className="p-2 border">95%</td>
                   </tr>
                   <tr>
-                    <td className="p-2 border">Aditi Jain</td>
+                    <td className="p-2 border">Shivani </td>
+                    <td className="p-2 border">PRE43187</td>
+                    <td className="p-2 border">1175</td>
+                    <td className="p-2 border">83%</td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 border">Raghav</td>
+                    <td className="p-2 border">PRE43187</td>
+                    <td className="p-2 border">1175</td>
+                    <td className="p-2 border">89%</td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 border">Abhinay</td>
+                    <td className="p-2 border">PRE43187</td>
+                    <td className="p-2 border">1175</td>
+                    <td className="p-2 border">92%</td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 border">Aditi </td>
                     <td className="p-2 border">PRE43187</td>
                     <td className="p-2 border">1175</td>
                     <td className="p-2 border">99%</td>
