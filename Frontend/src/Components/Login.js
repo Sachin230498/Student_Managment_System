@@ -170,6 +170,7 @@
 //---------------------------///
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaGoogle, FaApple } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
@@ -250,7 +251,7 @@ const Login = ({ onClose }) => {
         </div>
         <div className='flex justify-between text-xs font-serif p-2'>
           <span>Don't have an account?</span>
-          <a href='#' className='font-semibold text-blue-400'>Sign Up</a>
+          <Link to="/signUp"><a href='#' className='font-semibold text-blue-400'>Sign Up</a></Link>
         </div>
       </div>
     </div>

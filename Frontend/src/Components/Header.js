@@ -1,44 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlineMenuBook } from 'react-icons/md';
 import logo from '../Assets/logo1.png';
-import SignUp from './SignUp';
-import Login from './Login';
 
 const Header = () => {
-  
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navbar, setNavbar] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const closeMenu = () => setMenuOpen(false);
+
+  const handleResize = () => {
+    if (window.innerWidth >= 768) {
+      setMenuOpen(false);
+    }
   };
 
-  const closeMenu = () => {
-    setMenuOpen(false);
+  const handleScroll = () => {
+    setNavbar(window.scrollY > 50);
   };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
-      <div className='flex justify-between p-1 items-center fixed top-0 w-full h-16 bg-white shadow-md z-10 mt-2 mb-2'>
+      <div className={`flex justify-between items-center sticky top-0 w-full h-16 shadow-md z-10 mt-2 mb-2 transition-colors duration-300 ${navbar ? 'bg-indigo-100 text-black' : 'bg-transparent text-black'}`}>
         <img src={logo} alt="Website Logo" className='w-32 m-6' />
         <div className='md:hidden'>
-          <MdOutlineMenuBook className='text-3xl' onClick={toggleMenu} />
+          <MdOutlineMenuBook className='text-3xl absolute md:static right-3 md:right-0 top-3' onClick={toggleMenu} />
         </div>
         <div className={`md:block ${menuOpen ? 'block' : 'hidden'}`}>
-          <div className='flex flex-col md:flex-row mt-80 md:m-0 p-3 md:p-0 items-center w-full md:gap-9 gap-2 font-sans bg-white font-semibold md:font-normal'>
-            <Link className='hover:text-red-400' to="/home" onClick={closeMenu}>Home</Link>
-            <Link className='hover:text-red-400' to="/ourCourses" onClick={closeMenu}>Courses</Link>
-            <a className='hover:text-red-400' href="#" onClick={closeMenu}>Fee</a>
-            <a className='hover:text-red-400' href="#" onClick={closeMenu}>About Us</a>
-            <a className='hover:text-red-400' href="#" onClick={closeMenu}>Contact Us</a>
-            <div className='flex flex-col md:flex-row gap-2 p-2'>
-              <Link to="/login"><button className='bg-[#101735] text-white rounded-full px-2 p-1 w-20' >SignIn</button></Link>
-              <Link to="/signUp"><button className='bg-[#101735] text-white rounded-full px-2 p-1 w-20'>SignUp</button></Link>
-            </div>
+          <div className='flex flex-col md:flex-row mt-80 md:m-0 p-3 md:p-0 items-center w-full md:gap-9 gap-2    md:font-normal'>
+            <Link className='hover:border-black hover:border-b-2 font-bold ' to="/home" onClick={closeMenu}>Home</Link>
+            <Link className='hover:border-black hover:border-b-2 font-bold' to="/ourCourses" onClick={closeMenu}>Courses</Link>
+            <a className='hover:border-black hover:border-b-2 font-bold' href="#" onClick={closeMenu}>Fee</a>
+            <a className='hover:border-black hover:border-b-2 font-bold' href="#" onClick={closeMenu}>About Us</a>
+            <a className='hover:border-black hover:border-b-2 font-bold' href="#" onClick={closeMenu}>Contact Us</a>
+              <Link to="/login"><button className='border-2 px-2 border-indigo-900 rounded-md  '>Login</button></Link>
+              <Link to="/signUp"><button className='   '>SignUp</button></Link>
           </div>
         </div>
       </div>
-
     </>
   );
 };

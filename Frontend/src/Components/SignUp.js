@@ -196,6 +196,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -342,7 +343,7 @@ const SignUp = ({ onClose }) => {
         </div>
         <div className='flex justify-between text-xs font-serif p-2'>
           <p>Already have an account?</p>
-          <a href='#' className='font-semibold text-blue-400'>Log in</a>
+          <Link to="/login"><a href='#' className='font-semibold text-blue-400'>Log in</a></Link>
         </div>
       </div>
     </div>
