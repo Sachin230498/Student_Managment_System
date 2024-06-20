@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Students from '../Admin/students/Students';
-import Instructor from '../Admin/Instructor/instructor';
+// import Instructor from '../Admin/Instructor/instructor';
+import Instructors from '../Admin/Instructor/Instructors';
 import Dashboard from '../Admin/Dashboard';
 import Courses from "../Admin/Course/Courses";
 import CourseDetails from '../Admin/Course/CourseDetails';
@@ -11,10 +12,11 @@ export default function AdminRoutes() {
     <Routes>
       <Route path='/students' element={<Students />} />
       <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/instructor' element={<Instructor />} />
+      <Route path='/instructor' element={<Instructors />} />
       <Route path='/course' element={<Courses />} />
       <Route path='/addoncourse' element={<Addoncourse />} />
-      <Route path='/courseDetails/:id' element={<CourseDetails />} />  
+      {/* <Route path='/courseDetails/:id' element={<CourseDetails />} />   */}
+      <Route path='/courseContent/:id' element={<CourseDetails />} />  
       <Route path="*" element={<Navigate to="/dashboard" />} /> {/* Fallback to dashboard */}
     </Routes>
   );

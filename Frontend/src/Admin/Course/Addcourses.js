@@ -284,6 +284,8 @@ export default function AddCourses({ onClose, onAddCourse }) {
 
       const newCourse = await response.json();
       console.log('New course added:', newCourse);
+      console.log(newCourse.course._id)
+      localStorage.setItem('courseid', newCourse.course._id);
       onAddCourse(newCourse.course);
       onClose();
     } catch (error) {

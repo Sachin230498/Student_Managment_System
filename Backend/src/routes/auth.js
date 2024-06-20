@@ -1,13 +1,13 @@
 //routes/auth.js
 const express = require('express');
-const {   teacherRegister,teacherLogIn,getAllStudents } = require('../controller/User');
+const {   teacherRegister,teacherLogIn,getAllStudents, } = require('../controller/User');
 // const {sclassCreate, sclassList,getSclassDetail} = require("../controller/courseController")
 const { addStudent, getStudents } = require('../controller/student');
 const auth = require('../middleware/Auth');
 const allowRoles = require('../middleware/roles');
 const  User = require("../model/Usermodel")
-const { createCourse, addCourseContent,deleteCourse,updateCourse, updateCourseContent,deleteCourseContent,getAllCourses,getCourseContent } = require('../controller/courseController');
-const { promoteUser, setPaidStatus, deleteUser } = require('../controller/User');
+const { createCourse, addCourseContent,deleteCourse,updateCourse, updateCourseContent,deleteCourseContent,getAllCourses,getCourseContentByCourseId } = require('../controller/courseController');
+const { promoteUser, setPaidStatus, deleteUser,getInstructor } = require('../controller/User');
 const upload= require('../middleware/multer.middleware')
 const router = express.Router();
 
@@ -17,7 +17,7 @@ const router = express.Router();
 router.post('/register', teacherRegister);
 router.post('/login', teacherLogIn);
 router.get('/students', getAllStudents);
-
+router.get('/instructors', getInstructor);
 
 // router.post('/course',sclassCreate);
 // router.get('/courseList',sclassList);
@@ -34,7 +34,7 @@ router.get('/course', auth, allowRoles('Admin', 'Instructor'), getAllCourses);
 router.post('/courseContent', auth, allowRoles('Admin','Instructor') , upload.single("image"), addCourseContent);
 router.put('/courseContent/:id', auth, allowRoles('Instructor'), updateCourseContent); 
 router.delete('/courseContent/:id', auth, allowRoles('Instructor'), deleteCourseContent); 
-router.get('/courseDetails/:id/', auth, allowRoles('Admin', 'Instructor'), getCourseContent);
+router.get('/courseContent/:id/', getCourseContentByCourseId);
 
 
 

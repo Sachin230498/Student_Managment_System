@@ -79,14 +79,21 @@ const deleteCourse = async (req, res) => {
 // Instructor adds course content
 
 const addCourseContent = async (req, res) => {
-    const { title, content } = req.body;
+    const { title, content ,courseId } = req.body;
     const userId = req.user._id; // Assume user information is set in the req by auth middleware
-    const image = req.file ? req.file.path : null; // Assuming you're using multer middleware
+    const image = req.file ? req.file.path : null; 
+    let imagePath ="";
+    if(image){
+        imagePath=`/uploads/${image}`
+    }
+    
 
-    console.log( title, content, image)
+    // Assuming you're using multer middleware
+
+    console.log(title, content, image)
 
     try {
-        const courseContent = new CourseContent({ title, content, image, createdBy: userId });
+        const courseContent = new CourseContent({ title, content, image:imagePath,courseId, createdBy: userId });
         console.log(courseContent)
         const response = await courseContent.save();
 
@@ -125,12 +132,12 @@ const updateCourseContent = async (req, res) => {
 
 // Fetch content for a specific course
 
-const getCourseContent = async (req, res) => {
-    const courseId = req.params.id;
+const getCourseContentByCourseId = async (req, res) => {
+    const courseId = req.params.courseId;
 
     try {
         const content = await CourseContent.find({ course: courseId });
-        if (!content) {
+        if (!content || content.length === 0) {
             return res.status(404).send("Course content not found");
         }
         res.status(200).send(content);
@@ -139,6 +146,27 @@ const getCourseContent = async (req, res) => {
         res.status(500).send("Failed to fetch course content");
     }
 };
+
+
+
+// const getCourseContent=async(req,res)=>{try {
+//     const courseId = req.params.id;
+//     const course = await Course.findById(courseId).populate('content'); // Adjust the model and relationships as needed
+//     if (!course) {
+//       return res.status(404).json({ error: 'Course not found' });
+//     }
+//     res.json(course);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Server error' });
+//   }
+// };
+
+
+
+
+
+
 // Instructor deletes course content
 const deleteCourseContent = async (req, res) => {
     try {
@@ -161,7 +189,7 @@ module.exports = {
     updateCourseContent,
     deleteCourseContent,
     getAllCourses,
-    getCourseContent
+    getCourseContentByCourseId
 
 
 

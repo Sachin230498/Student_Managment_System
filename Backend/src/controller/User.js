@@ -121,7 +121,17 @@ const deleteUser = async (req, res) => {
     }
 };
 
-  
+const getInstructor = async (req, res) => {
+    try {
+        const instructors = await User.find({ role: 'Instructor' });
+        res.status(200).send(instructors);
+    } catch (error) {
+        console.error('Error fetching instructors:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+
 
 
 
@@ -132,7 +142,8 @@ module.exports = {
     promoteUser,
     setPaidStatus,
     deleteUser,
-    getAllStudents
+    getAllStudents,
+    getInstructor
 
    
 };

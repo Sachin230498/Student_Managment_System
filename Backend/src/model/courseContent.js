@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
 const CourseContentSchema = new mongoose.Schema({
-    course: {
+    courseId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'course',
+        ref: 'Course', // Reference to the Course model
+        required: true,
     },
+   
     title: {
         type: String,
         required: true,
