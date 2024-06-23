@@ -10,6 +10,12 @@ const { createCourse, addCourseContent,deleteCourse,updateCourse, updateCourseCo
 const { promoteUser, setPaidStatus, deleteUser,getInstructor } = require('../controller/User');
 const upload= require('../middleware/multer.middleware')
 const router = express.Router();
+const {
+    getInstructors,
+    addInstructor,
+    updateInstructor,
+    deleteInstructor,
+  } = require('../controller/instrctorController');
 
 
 
@@ -17,7 +23,25 @@ const router = express.Router();
 router.post('/register', teacherRegister);
 router.post('/login', teacherLogIn);
 router.get('/students', getAllStudents);
+// router.get('/instructors', getInstructor);
+
 router.get('/instructors', getInstructor);
+// Route to get a single instructor by ID
+router.get('/instructors/:id', auth, getInstructor);
+
+// Route to add a new instructor
+router.post('/instructors', auth, addInstructor);
+
+// Route to update an instructor by ID
+router.put('/instructors/:id', auth, updateInstructor);
+
+// Route to delete an instructor by ID
+router.delete('/instructors/:id', auth, deleteInstructor);
+
+
+
+
+
 
 // router.post('/course',sclassCreate);
 // router.get('/courseList',sclassList);
