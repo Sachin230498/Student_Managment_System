@@ -79,16 +79,15 @@ const deleteCourse = async (req, res) => {
 // Instructor adds course content
 
 const addCourseContent = async (req, res) => {
+   
     const { title, content ,courseId } = req.body;
-    const userId = req.user._id; // Assume user information is set in the req by auth middleware
-    const image = req.file ? req.file.path : null; 
+    const userId = req.user._id;
+    const image = req.file; 
     let imagePath ="";
-    if(image){
-        imagePath=`/uploads/${image}`
-    }
-    
 
-    // Assuming you're using multer middleware
+    if(image){
+        imagePath=`/uploads/${image.filename}`
+    }
 
     console.log(title, content, image)
 
@@ -134,9 +133,10 @@ const updateCourseContent = async (req, res) => {
 
 const getCourseContentByCourseId = async (req, res) => {
     const courseId = req.params.courseId;
-
+    console.log(courseId);
     try {
-        const content = await CourseContent.find({ course: courseId });
+        // Find course content by courseId
+        const content = await CourseContent.find({ courseId: courseId });
         if (!content || content.length === 0) {
             return res.status(404).send("Course content not found");
         }
@@ -146,6 +146,8 @@ const getCourseContentByCourseId = async (req, res) => {
         res.status(500).send("Failed to fetch course content");
     }
 };
+
+
 
 
 
@@ -178,7 +180,7 @@ const deleteCourseContent = async (req, res) => {
     } catch (error) {
         console.error("Error:", error);
         res.status(500).send("Failed to delete course content");
-    } 4
+    } 
 };
 
 module.exports = {

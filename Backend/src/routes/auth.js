@@ -9,6 +9,7 @@ const  User = require("../model/Usermodel")
 const { createCourse, addCourseContent,deleteCourse,updateCourse, updateCourseContent,deleteCourseContent,getAllCourses,getCourseContentByCourseId } = require('../controller/courseController');
 const { promoteUser, setPaidStatus, deleteUser,getInstructor } = require('../controller/User');
 const upload= require('../middleware/multer.middleware')
+
 const router = express.Router();
 const {
     getInstructors,
@@ -58,7 +59,7 @@ router.get('/course', auth, allowRoles('Admin', 'Instructor'), getAllCourses);
 router.post('/courseContent', auth, allowRoles('Admin','Instructor') , upload.single("image"), addCourseContent);
 router.put('/courseContent/:id', auth, allowRoles('Instructor'), updateCourseContent); 
 router.delete('/courseContent/:id', auth, allowRoles('Instructor'), deleteCourseContent); 
-router.get('/courseContent/:id/', getCourseContentByCourseId);
+router.get('/courseContent/:courseId', getCourseContentByCourseId);
 
 
 
