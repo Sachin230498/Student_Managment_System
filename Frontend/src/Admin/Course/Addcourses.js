@@ -219,9 +219,426 @@
 
 
 
+// import React, { useState } from 'react';
+// import { RiCloseFill } from 'react-icons/ri';
+
+// export default function AddCourses({ onClose, onAddCourse }) {
+//   const [courseName, setCourseName] = useState('');
+//   const [instructorName, setInstructorName] = useState('');
+//   const [courseDescription, setCourseDescription] = useState('');
+//   const [courseDuration, setCourseDuration] = useState('');
+//   const [startDate, setStartDate] = useState('');
+//   const [endDate, setEndDate] = useState('');
+//   const [courseLevel, setCourseLevel] = useState('');
+//   const [courseCategory, setCourseCategory] = useState('');
+//   const [coursePrice, setCoursePrice] = useState('');
+//   const [error, setError] = useState(null);
+
+//   const handleClose = () => {
+//     onClose();
+//   };
+  
+//   const token = localStorage.getItem('token');
+//   // console.log("token",token)
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+
+
+
+//     if (!token) {
+//       setError('No token found. Please log in.');
+//       return;
+//     }
+
+
+
+
+//     const requestOptions = {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: JSON.stringify({
+//         title: courseName,
+//         instructor: instructorName,
+//         description: courseDescription,
+//         duration: courseDuration,
+//         startDate: startDate,
+//         endDate: endDate,
+//         level: courseLevel,
+//         category: courseCategory,
+//         price: coursePrice,
+//         userRole: localStorage.getItem('userRole'), 
+//       }),
+//     };
+
+//     try {
+//       const response = await fetch('http://localhost:8081/api/course', requestOptions);
+//       if (!response.ok) {
+//         const text = await response.text();
+//         throw new Error(`Network response was not ok: ${text}`);
+//       }
+
+//       const newCourse = await response.json();
+//       console.log('New course added:', newCourse);
+//       console.log(newCourse.course._id)
+//       localStorage.setItem('courseid', newCourse.course._id);
+//       onAddCourse(newCourse.course);
+//       onClose();
+//     } catch (error) {
+//       console.error('Error adding course:', error);
+//       setError(error.message);
+//     }
+//   };
+
+//   return (
+//     <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 overflow-y-scroll">
+//       <div className="bg-white p-4 max-w-xl mx-auto rounded-lg mt-32">
+//         <div className="flex justify-end">
+//           <button onClick={handleClose}>
+//             <RiCloseFill />
+//           </button>
+//         </div>
+//         <h3 className="text-2xl font-bold mb-4">Add Course</h3>
+//         <form onSubmit={handleSubmit} className="space-y-4">
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Name</label>
+//               <input
+//                 type="text"
+//                 value={courseName}
+//                 onChange={(e) => setCourseName(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Instructor Name</label>
+//               <input
+//                 type="text"
+//                 value={instructorName}
+//                 onChange={(e) => setInstructorName(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//           </div>
+//           <div className="flex-1">
+//             <label className="block text-gray-700">Course Description</label>
+//             <textarea
+//               value={courseDescription}
+//               onChange={(e) => setCourseDescription(e.target.value)}
+//               className="w-full px-3 py-2 border border-gray-300 rounded"
+//               required
+//             />
+//           </div>
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Duration</label>
+//               <select
+//                 value={courseDuration}
+//                 onChange={(e) => setCourseDuration(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               >
+//                 <option value="">Select Duration</option>
+//                 <option value="4 weeks">4 weeks</option>
+//                 <option value="6 weeks">6 weeks</option>
+//                 <option value="8 weeks">8 weeks</option>
+//                 <option value="12 weeks">12 weeks</option>
+//               </select>
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Level</label>
+//               <select
+//                 value={courseLevel}
+//                 onChange={(e) => setCourseLevel(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               >
+//                 <option value="">Select Level</option>
+//                 <option value="Beginner">Beginner</option>
+//                 <option value="Intermediate">Intermediate</option>
+//                 <option value="Advanced">Advanced</option>
+//               </select>
+//             </div>
+//           </div>
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Start Date</label>
+//               <input
+//                 type="date"
+//                 value={startDate}
+//                 onChange={(e) => setStartDate(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">End Date</label>
+//               <input
+//                 type="date"
+//                 value={endDate}
+//                 onChange={(e) => setEndDate(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//           </div>
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Category</label>
+//               <select
+//                 value={courseCategory}
+//                 onChange={(e) => setCourseCategory(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               >
+//                 <option value="">Select Category</option>
+//                 <option value="Technology">Technology</option>
+//                 <option value="Business">Business</option>
+//                 <option value="Art">Art</option>
+//                 <option value="Science">Science</option>
+//               </select>
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Price</label>
+//               <input
+//                 type="text"
+//                 value={coursePrice}
+//                 onChange={(e) => setCoursePrice(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//           </div>
+//           {error && <p className="text-red-500">{error}</p>}
+//           <div className="flex justify-center">
+//             <button
+//               type="submit"
+//               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+//             >
+//               Submit
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// import React, { useState } from 'react';
+// import { RiCloseFill } from 'react-icons/ri';
+
+// export default function AddCourses({ onClose, onAddCourse }) {
+//   const [courseName, setCourseName] = useState('');
+//   const [instructorName, setInstructorName] = useState('');
+//   const [courseDescription, setCourseDescription] = useState('');
+//   const [courseDuration, setCourseDuration] = useState('');
+//   const [startDate, setStartDate] = useState('');
+//   const [endDate, setEndDate] = useState('');
+//   const [courseLevel, setCourseLevel] = useState('');
+//   const [courseCategory, setCourseCategory] = useState('');
+//   const [coursePrice, setCoursePrice] = useState('');
+//   const [error, setError] = useState(null);
+
+//   const handleClose = () => {
+//     onClose();
+//   };
+  
+//   const token = localStorage.getItem('token');
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (!token) {
+//       setError('No token found. Please log in.');
+//       return;
+//     }
+
+//     const requestOptions = {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${token}`,
+//       },
+//       body: JSON.stringify({
+//         title: courseName,
+//         instructor: instructorName,
+//         description: courseDescription,
+//         duration: courseDuration,
+//         startDate: startDate,
+//         endDate: endDate,
+//         level: courseLevel,
+//         category: courseCategory,
+//         price: coursePrice,
+//         userRole: localStorage.getItem('userRole'),
+//       }),
+//     };
+
+//     try {
+//       const response = await fetch('http://localhost:8081/api/course', requestOptions);
+//       if (!response.ok) {
+//         const text = await response.text();
+//         throw new Error(`Network response was not ok: ${text}`);
+//       }
+
+//       const newCourse = await response.json();
+//       localStorage.setItem('courseid', newCourse.course._id);
+//       onAddCourse(newCourse.course);
+//       onClose();
+//     } catch (error) {
+//       console.error('Error adding course:', error);
+//       setError(error.message);
+//     }
+//   };
+
+//   return (
+//     <div className="fixed inset-0 flex items-center justify-center bg-gray-100 bg-opacity-50 overflow-y-scroll">
+//       <div className="bg-white p-4 max-w-xl mx-auto rounded-lg mt-32">
+//         <div className="flex justify-end">
+//           <button onClick={handleClose}>
+//             <RiCloseFill />
+//           </button>
+//         </div>
+//         <h3 className="text-2xl font-bold mb-4">Add Course</h3>
+//         <form onSubmit={handleSubmit} className="space-y-4">
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Name</label>
+//               <input
+//                 type="text"
+//                 value={courseName}
+//                 onChange={(e) => setCourseName(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Instructor Name</label>
+//               <input
+//                 type="text"
+//                 value={instructorName}
+//                 onChange={(e) => setInstructorName(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//           </div>
+//           <div className="flex-1">
+//             <label className="block text-gray-700">Course Description</label>
+//             <textarea
+//               value={courseDescription}
+//               onChange={(e) => setCourseDescription(e.target.value)}
+//               className="w-full px-3 py-2 border border-gray-300 rounded"
+//               required
+//             />
+//           </div>
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Duration</label>
+//               <select
+//                 value={courseDuration}
+//                 onChange={(e) => setCourseDuration(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               >
+//                 <option value="">Select Duration</option>
+//                 <option value="4 weeks">4 weeks</option>
+//                 <option value="6 weeks">6 weeks</option>
+//                 <option value="8 weeks">8 weeks</option>
+//                 <option value="12 weeks">12 weeks</option>
+//               </select>
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Level</label>
+//               <select
+//                 value={courseLevel}
+//                 onChange={(e) => setCourseLevel(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               >
+//                 <option value="">Select Level</option>
+//                 <option value="Beginner">Beginner</option>
+//                 <option value="Intermediate">Intermediate</option>
+//                 <option value="Advanced">Advanced</option>
+//               </select>
+//             </div>
+//           </div>
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Start Date</label>
+//               <input
+//                 type="date"
+//                 value={startDate}
+//                 onChange={(e) => setStartDate(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">End Date</label>
+//               <input
+//                 type="date"
+//                 value={endDate}
+//                 onChange={(e) => setEndDate(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//           </div>
+//           <div className="flex space-x-4">
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Category</label>
+//               <select
+//                 value={courseCategory}
+//                 onChange={(e) => setCourseCategory(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               >
+//                 <option value="">Select Category</option>
+//                 <option value="Technology">Technology</option>
+//                 <option value="Business">Business</option>
+//                 <option value="Art">Art</option>
+//                 <option value="Science">Science</option>
+//               </select>
+//             </div>
+//             <div className="flex-1">
+//               <label className="block text-gray-700">Course Price</label>
+//               <input
+//                 type="text"
+//                 value={coursePrice}
+//                 onChange={(e) => setCoursePrice(e.target.value)}
+//                 className="w-full px-3 py-2 border border-gray-300 rounded"
+//                 required
+//               />
+//             </div>
+//           </div>
+//           {error && <p className="text-red-500">{error}</p>}
+//           <div className="flex justify-center">
+//             <button
+//               type="submit"
+//               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+//             >
+//               Submit
+//             </button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
 import React, { useState } from 'react';
 import { RiCloseFill } from 'react-icons/ri';
-
+import LoadingButton from '../LoadingButton';
 export default function AddCourses({ onClose, onAddCourse }) {
   const [courseName, setCourseName] = useState('');
   const [instructorName, setInstructorName] = useState('');
@@ -233,27 +650,23 @@ export default function AddCourses({ onClose, onAddCourse }) {
   const [courseCategory, setCourseCategory] = useState('');
   const [coursePrice, setCoursePrice] = useState('');
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClose = () => {
     onClose();
   };
   
   const token = localStorage.getItem('token');
-  // console.log("token",token)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
-
+    setIsLoading(true);
 
     if (!token) {
       setError('No token found. Please log in.');
+      setIsLoading(false);
       return;
     }
-
-
-
 
     const requestOptions = {
       method: 'POST',
@@ -271,7 +684,7 @@ export default function AddCourses({ onClose, onAddCourse }) {
         level: courseLevel,
         category: courseCategory,
         price: coursePrice,
-        userRole: localStorage.getItem('userRole'), 
+        userRole: localStorage.getItem('userRole'),
       }),
     };
 
@@ -283,14 +696,14 @@ export default function AddCourses({ onClose, onAddCourse }) {
       }
 
       const newCourse = await response.json();
-      console.log('New course added:', newCourse);
-      console.log(newCourse.course._id)
       localStorage.setItem('courseid', newCourse.course._id);
       onAddCourse(newCourse.course);
       onClose();
     } catch (error) {
       console.error('Error adding course:', error);
       setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -417,17 +830,12 @@ export default function AddCourses({ onClose, onAddCourse }) {
           </div>
           {error && <p className="text-red-500">{error}</p>}
           <div className="flex justify-center">
-            <button
-              type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
+            <LoadingButton isLoading={isLoading} variant="primary" type="submit">
               Submit
-            </button>
+            </LoadingButton>
           </div>
         </form>
       </div>
     </div>
   );
 }
-
-

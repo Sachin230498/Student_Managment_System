@@ -11,11 +11,56 @@ export default function AddStudent({ onClose, onAddStudent }) {
   const [password, setPassword] = useState('');
   const [profileImage, setProfileImage] = useState(null);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newStudent = { name, class: studentClass, gender, email, phone, password, profileImage };
-    console.log("form Submitted with ", newStudent)
-    onAddStudent(newStudent);
+//   const handleSubmit =async (event) => {
+//     event.preventDefault();
+  
+//   try {
+//     const formData = new FormData();
+//     formData.append('name', name);
+//     formData.append('class', studentClass);
+//     formData.append('gender', gender);
+//     formData.append('email', email);
+//     formData.append('phone', phone);
+//     formData.append('password', password);
+//     formData.append('image', profileImage);
+
+//     await onAddStudent(formData);
+
+//     // Reset form fields
+//     setName('');
+//     setStudentClass('');
+//     setGender('');
+//     setEmail('');
+//     setPhone('');
+//     setPassword('');
+//     setProfileImage(null);
+//     onClose();
+//   } catch (error) {
+//     console.error('Error adding student:', error);
+//     // Handle error state or display error message to user
+//   }
+// };
+
+
+
+
+
+const handleSubmit = async (event) => {
+  event.preventDefault();
+
+  try {
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('class', studentClass);
+    formData.append('gender', gender);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('password', password);
+    formData.append('image', profileImage);
+
+    await onAddStudent(formData);
+
+    // Reset form fields
     setName('');
     setStudentClass('');
     setGender('');
@@ -23,8 +68,14 @@ export default function AddStudent({ onClose, onAddStudent }) {
     setPhone('');
     setPassword('');
     setProfileImage(null);
-    onClose(); 
-  };
+    onClose();
+  } catch (error) {
+    console.error('Error adding student:', error);
+    // Handle error state or display error message to user
+  }
+};
+
+
 
   const handleClose = () => {
     onClose();

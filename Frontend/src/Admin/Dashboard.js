@@ -35,14 +35,14 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col md:flex-row" >
-      
-      <LeftNavbar/>
+    
+      <LeftNavbar  />
 
       <div className="flex flex-col flex-1 p-4 md:p-6">
         <Header />
         <div className="flex flex-col p-6 space-y-6">
           <header className="flex-col items-center mb-6">
-            <h1 className="text-3xl font-bold">Welcome guys.</h1>
+            <h1 className="text-3xl font-bold">Welcome!</h1>
             <p className='mb-10'> Navigate the future of education with Shanti Academy</p>
             <div className="flex items-center space-x-10">
               <div className="flex bg-purple-200 rounded-xl w-80 p-4 transform transition-transform duration-300 hover:scale-110">

@@ -1,299 +1,237 @@
-// import React, { useState } from 'react';
 
-// export default function Addoncourse({ onClose, onAddContent }) {
+
+// import axios from 'axios';
+// import React, { useState } from 'react';
+// import { RxCross2 } from "react-icons/rx";
+ 
+// const Addoncourse = ({ courseId, onAddContent, onClose }) => {
 //   const [title, setTitle] = useState('');
 //   const [content, setContent] = useState('');
 //   const [image, setImage] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(null);
 
-//   const handleFileChange = (event) => {
-//     setImage(event.target.files[0]);
-//   };
-
-//   const courseId = localStorage.getItem("courseid"); // Corrected variable name
-
-//   const handleAddContent = async (e) => {
+//   const handleSubmit = async (e) => {
 //     e.preventDefault();
-//     const token = localStorage.getItem('token');
+//     setLoading(true);
+//     setError(null);
 
 //     const formData = new FormData();
 //     formData.append('title', title);
 //     formData.append('content', content);
-//     formData.append('courseId', courseId); // Corrected to 'courseId'
+//     formData.append('courseId', courseId);
 
 //     if (image) {
 //       formData.append('image', image);
 //     }
 
 //     try {
-//       const response = await fetch(`http://localhost:8081/api/courseContent`, {
-//         method: 'POST',
+//       const token = localStorage.getItem('token');
+
+//       const response = await axios.post('http://localhost:8081/api/courseContent', formData, {
 //         headers: {
+//           'Content-Type': 'multipart/form-data',
 //           Authorization: `Bearer ${token}`,
 //         },
-//         body: formData,
 //       });
 
-//       if (!response.ok) {
-//         const text = await response.text();
-//         throw new Error(`Network response was not ok: ${text}`);
+//       if (response.status === 200) {
+//         onAddContent(response.data);
+//         console.log('Course Content Added Successfully!');
+//         console.log('Closing form');
+//         onClose(); // Close the form after successful submission
 //       } else {
-//         alert("Course Content Added successfully!!!");
+//         console.error('Unexpected response status:', response.status);
 //       }
-
-//       const newContent = await response.json();
-//       onAddContent(newContent);
-//       onClose();
 //     } catch (error) {
 //       console.error('Error adding content:', error);
-//       alert(`Error adding content: ${error.message}`);
+//       setError('Error adding content. Please try again.');
+//     } finally {
+//       setLoading(false);
 //     }
 //   };
 
 //   return (
-//     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-//       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-//         <h2 className="text-2xl mb-4">Add Content</h2>
-//         <form onSubmit={handleAddContent}>
+//     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+//       <div className="bg-white p-6 rounded-lg shadow-lg">
+//         <div className='flex justify-between items-center mb-4'>
+//         <h2 className="text-xl font-semibold mb-4">Add Content to Course</h2>
+//         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+//       <RxCross2
+//       className="w-6 h-6 text-blue-700" />    </button>
+//       </div>
+//         <form onSubmit={handleSubmit}>
 //           <div className="mb-4">
-//             <label className="block text-sm font-bold mb-2" htmlFor="title">Title</label>
+//             <label className="block text-gray-700 mb-2">Title</label>
 //             <input
-//               id="title"
 //               type="text"
 //               value={title}
 //               onChange={(e) => setTitle(e.target.value)}
-//               className="w-full px-3 py-2 border border-gray-300 rounded"
+//               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
 //               required
 //             />
 //           </div>
 //           <div className="mb-4">
-//             <label className="block text-sm font-bold mb-2" htmlFor="content">Content</label>
+//             <label className="block text-gray-700 mb-2">Content</label>
 //             <textarea
-//               id="content"
 //               value={content}
 //               onChange={(e) => setContent(e.target.value)}
-//               className="w-full px-3 py-2 border border-gray-300 rounded"
+//               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
 //               required
 //             />
 //           </div>
 //           <div className="mb-4">
-//             <label className="block text-sm font-bold mb-2" htmlFor="image">Image</label>
+//             <label className="block text-gray-700 mb-2">Image</label>
 //             <input
-//               id="image"
 //               type="file"
-//               onChange={handleFileChange}
-//               className="w-full px-3 py-2 border border-gray-300 rounded"
-//               accept="image/*"
+//               onChange={(e) => setImage(e.target.files[0])}
+//               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
 //             />
 //           </div>
-//           <div className="flex justify-end">
-//             <button type="button" onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancel</button>
-//             <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">Add</button>
+//           {error && <div className="text-red-500 mb-4">{error}</div>}
+//           <div className="flex justify-end space-x-2">
+//             <button
+//               type="button"
+//               onClick={() => {
+//                 console.log('Cancel button clicked');
+//                 onClose();
+//               }}
+//               className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold px-4 py-2 rounded-lg"
+//               disabled={loading}
+//             >
+//               Cancel
+//             </button>
+//             <button
+//               type="submit"
+//               className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg"
+//               disabled={loading}
+//             >
+//               {loading ? 'Adding...' : 'Add'}
+//             </button>
 //           </div>
 //         </form>
 //       </div>
 //     </div>
 //   );
-// }
+// };
 
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-
-// export default function Addoncourse({ onClose, onAddContent, courseId }) {
-//   const [title, setTitle] = useState('');
-//   const [content, setContent] = useState('');
-//   const [image, setImage] = useState(null);
-
-//   const handleFileChange = (event) => {
-//     setImage(event.target.files[0]);
-//   };
-
-//   const handleAddContent = async (e) => {
-//     e.preventDefault();
-//     const token = localStorage.getItem('token');
-
-//     const formData = new FormData();
-//     formData.append('title', title);
-//     formData.append('content', content);
-//     formData.append('courseId', courseId); // Ensure courseId is passed as a prop
-
-//     if (image) {
-//       formData.append('image', image);
-//     }
-
-//     try {
-//       const response = await fetch(`http://localhost:8081/api/courseContent`, {
-//         method: 'POST',
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//         body: formData,
-//       });
-
-//       if (!response.ok) {
-//         const text = await response.text();
-//         throw new Error(`Network response was not ok: ${text}`);
-//       } else {
-//         alert("Course Content Added successfully!!!");
-//       }
-
-//       const newContent = await response.json();
-//       onAddContent(newContent);
-//       onClose();
-//     } catch (error) {
-//       console.error('Error adding content:', error);
-//       alert(`Error adding content: ${error.message}`);
-//     }
-//   };
-
-//   return (
-//     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-//       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-//         <h2 className="text-2xl mb-4">Add Content</h2>
-//         <form onSubmit={handleAddContent}>
-//           <div className="mb-4">
-//             <label className="block text-sm font-bold mb-2" htmlFor="title">Title</label>
-//             <input
-//               id="title"
-//               type="text"
-//               value={title}
-//               onChange={(e) => setTitle(e.target.value)}
-//               className="w-full px-3 py-2 border border-gray-300 rounded"
-//               required
-//             />
-//           </div>
-//           <div className="mb-4">
-//             <label className="block text-sm font-bold mb-2" htmlFor="content">Content</label>
-//             <textarea
-//               id="content"
-//               value={content}
-//               onChange={(e) => setContent(e.target.value)}
-//               className="w-full px-3 py-2 border border-gray-300 rounded"
-//               required
-//             />
-//           </div>
-//           <div className="mb-4">
-//             <label className="block text-sm font-bold mb-2" htmlFor="image">Image</label>
-//             <input
-//               id="image"
-//               type="file"
-//               onChange={handleFileChange}
-//               className="w-full px-3 py-2 border border-gray-300 rounded"
-//               accept="image/*"
-//             />
-//           </div>
-//           <div className="flex justify-end">
-//             <button type="button" onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancel</button>
-//             <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">Add</button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-
+// export default Addoncourse;
+import axios from 'axios';
 import React, { useState } from 'react';
+import { RiCloseCircleLine } from 'react-icons/ri';
 
-export default function Addoncourse({ onClose, onAddContent }) {
+const Addoncourse = ({ courseId, onAddContent, onClose }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
-  };
-
-  const courseId = localStorage.getItem("cid"); 
-
-  const handleAddContent = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token') || "" ;
+    setLoading(true);
+    setError(null);
 
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', content);
-    formData.append('courseId', courseId); 
+    formData.append('courseId', courseId);
 
     if (image) {
       formData.append('image', image);
     }
 
     try {
-      const response = await fetch(`http://localhost:8081/api/courseContent`, {
-        method: 'POST',
+      const token = localStorage.getItem('token');
+
+      const response = await axios.post('http://localhost:8081/api/courseContent', formData, {
         headers: {
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
-        body: formData,
       });
 
-      if (!response.ok) {
-        const text = await response.text();
-        throw new Error(`Network response was not ok: ${text}`);
+      if (response.status === 200) {
+        onAddContent(response.data);
+        console.log('Course Content Added Successfully!');
+        console.log('Closing form');
+        onClose(); // Close the form after successful submission
       } else {
-        alert("Course Content Added successfully!!!");
+        console.error('Unexpected response status:', response.status);
       }
-
-      const newContent = await response.json();
-      onAddContent(newContent); // Using the onAddContent prop
-      onClose();
     } catch (error) {
       console.error('Error adding content:', error);
-      alert(`Error adding content: ${error.message}`);
+      setError('Error adding content. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl mb-4">Add Content</h2>
-        <form onSubmit={handleAddContent}>
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold mb-4">Add Content to Course</h2>
+          <button onClick={() => {
+            console.log('Close button clicked');
+            onClose();
+          }} className="text-gray-500 hover:text-gray-700">
+            <RiCloseCircleLine className="w-6 h-6 text-blue-700" />
+          </button>
+        </div>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="title">Title</label>
+            <label className="block text-gray-700 mb-2">Title</label>
             <input
-              id="title"
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="content">Content</label>
+            <label className="block text-gray-700 mb-2">Content</label>
             <textarea
-              id="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-bold mb-2" htmlFor="image">Image</label>
+            <label className="block text-gray-700 mb-2">Image</label>
             <input
-              id="image"
               type="file"
-              onChange={handleFileChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded"
-              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
             />
           </div>
-          <div className="flex justify-end">
-            <button type="button" onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded mr-2">Cancel</button>
-            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">Add</button>
+          {error && <div className="text-red-500 mb-4">{error}</div>}
+          <div className="flex justify-end space-x-2">
+            <button
+              type="button"
+              onClick={() => {
+                console.log('Cancel button clicked');
+                onClose();
+              }}
+              className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold px-4 py-2 rounded-lg"
+              disabled={loading}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg"
+              disabled={loading}
+            >
+              {loading ? 'Adding...' : 'Add'}
+            </button>
           </div>
         </form>
       </div>
     </div>
   );
-}
+};
+
+export default Addoncourse;

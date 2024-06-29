@@ -2,7 +2,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from '../Components/Header';
-import Footer from '../Components/Footer';
+// import Footer from '../Components/Footer';
 import Home from '../Components/HomePages/Home';
 import FullStack from '../Components/HomePages/FullStack';
 import Python from '../Components/HomePages/Python';
@@ -10,6 +10,7 @@ import DigitalMar from '../Components/HomePages/DigitalMar';
 import OurCourses from '../Components/HomePages/OurCourses';
 import Login from '../Components/Login';
 import SignUp from '../Components/SignUp';
+import Footer from '../Components/Footer';
 
 const AllRoutes = () => {
   return (
