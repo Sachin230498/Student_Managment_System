@@ -1,9 +1,8 @@
 
-
 // import axios from 'axios';
 // import React, { useState } from 'react';
 // import { RxCross2 } from "react-icons/rx";
- 
+
 // const Addoncourse = ({ courseId, onAddContent, onClose }) => {
 //   const [title, setTitle] = useState('');
 //   const [content, setContent] = useState('');
@@ -54,12 +53,16 @@
 //   return (
 //     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
 //       <div className="bg-white p-6 rounded-lg shadow-lg">
-//         <div className='flex justify-between items-center mb-4'>
-//         <h2 className="text-xl font-semibold mb-4">Add Content to Course</h2>
-//         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
-//       <RxCross2
-//       className="w-6 h-6 text-blue-700" />    </button>
-//       </div>
+//         <div className="flex justify-between items-center mb-4">
+//           <h2 className="text-xl font-semibold mb-4">Add Content to Course</h2>
+//           <button onClick={() => {
+//             console.log('Close button clicked');
+//             onClose();
+//           }} className="text-gray-500 hover:text-gray-700">
+//             <RxCross2 
+//             className="w-6 h-6 text-black" />
+//           </button>
+//         </div>
 //         <form onSubmit={handleSubmit}>
 //           <div className="mb-4">
 //             <label className="block text-gray-700 mb-2">Title</label>
@@ -118,12 +121,15 @@
 // export default Addoncourse;
 import axios from 'axios';
 import React, { useState } from 'react';
-import { RiCloseCircleLine } from 'react-icons/ri';
+import { RxCross2 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Addoncourse = ({ courseId, onAddContent, onClose }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
+  const [pdfFile, setPdfFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -141,21 +147,30 @@ const Addoncourse = ({ courseId, onAddContent, onClose }) => {
       formData.append('image', image);
     }
 
+    if (pdfFile) {
+      formData.append('pdfFile', pdfFile); // Append PDF file to formData
+    }
+
     try {
       const token = localStorage.getItem('token');
 
-      const response = await axios.post('http://localhost:8081/api/courseContent', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        'http://localhost:8081/api/courseContent',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response)
 
-      if (response.status === 200) {
+      if (response.status === 201) {
+        onClose();
+        toast.success("Course Content Added Successfully!")
         onAddContent(response.data);
         console.log('Course Content Added Successfully!');
-        console.log('Closing form');
-        onClose(); // Close the form after successful submission
       } else {
         console.error('Unexpected response status:', response.status);
       }
@@ -172,11 +187,14 @@ const Addoncourse = ({ courseId, onAddContent, onClose }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold mb-4">Add Content to Course</h2>
-          <button onClick={() => {
-            console.log('Close button clicked');
-            onClose();
-          }} className="text-gray-500 hover:text-gray-700">
-            <RiCloseCircleLine className="w-6 h-6 text-blue-700" />
+          <button
+            onClick={() => {
+              console.log('Close button clicked');
+              onClose();
+            }}
+            className="text-gray-500 hover:text-gray-700"
+          >
+            <RxCross2 className="w-6 h-6 text-black" />
           </button>
         </div>
         <form onSubmit={handleSubmit}>
@@ -204,6 +222,15 @@ const Addoncourse = ({ courseId, onAddContent, onClose }) => {
             <input
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2">PDF File</label>
+            <input
+              type="file"
+              accept=".pdf"
+              onChange={(e) => setPdfFile(e.target.files[0])}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-200"
             />
           </div>

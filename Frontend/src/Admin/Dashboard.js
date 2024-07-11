@@ -48,7 +48,7 @@ const Dashboard = () => {
               <div className="flex bg-purple-200 rounded-xl w-80 p-4 transform transition-transform duration-300 hover:scale-110">
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-xl font-semibold">Students</h3>
-                  <p className="text-2xl">15k</p>
+                  <p className="text-2xl">1000+</p>
                 </div>
                 <div className='flex items-center'>
                   <PiStudentFill style={{ fontSize: '2rem' }} />
@@ -58,7 +58,7 @@ const Dashboard = () => {
               <div className="flex bg-blue-200 rounded-xl w-80 p-4 transform transition-transform duration-300 hover:scale-110 ">
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-xl font-semibold">Instructor</h3>
-                  <p className="text-2xl">2000+</p>
+                  <p className="text-2xl">40+</p>
                 </div>
                 <div className="flex items-center">
                   <GrUserWorker style={{ fontSize: '2rem' }} />
@@ -68,7 +68,7 @@ const Dashboard = () => {
               <div className="flex bg-orange-200 rounded-xl w-80 p-4 transform transition-transform duration-300 hover:scale-110">
                 <div className="flex flex-col flex-grow">
                   <h3 className="text-xl font-semibold">Courses</h3>
-                  <p className="text-2xl">100+</p>
+                  <p className="text-2xl">10</p>
                 </div>
                 <div className="flex items-center">
                   <MdOutlineMenuBook style={{ fontSize: '2rem' }} />

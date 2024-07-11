@@ -8,6 +8,8 @@ import WhatOurTwo from './WhatOurTwo';
 import Header from '../Header';
 import Footer from '../Footer';
 import MainContent from './MainContent';
+import SuccessStory from './SuccessStory';
+import Testimonials from './Testimonial';
 
 const Home = () => {
   return (
@@ -18,6 +20,8 @@ const Home = () => {
     <WhatOur />
     <OurCourses />
     <WhatOurTwo />
+    <SuccessStory/>
+    <Testimonials/>
     <MainContent/>
    <Footer/>
     </>

@@ -138,8 +138,8 @@ const DigitalMar = () => {
   return (
     <>
       <div className='flex flex-col justify-center items-center p-3 mt-16' style={{ backgroundImage: "url(https://i.pinimg.com/736x/95/07/fe/9507fea1367cffea96286c3ea268a7e0.jpg)", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
-        <div className='flex flex-col justify-center items-center gap-2 mt-6 mb-6 text-white'>
-          <h1 className='sm:text-5xl text-3xl font-bold mb-6'>Become a Digital Marketer</h1>
+        <div className='flex flex-col justify-center items-center gap-2 mt-6 mb-6 text-black'>
+          <h1 id ="typewriter" className='sm:text-5xl text-3xl font-bold mb-6'>Become a Digital Marketer</h1>
           <p className='font-bold text-lg flex justify-center items-center gap-2'><TiTick className='text-green-500 border border-black rounded-full' /> No prior coding experience required</p>
           <p className='font-bold text-lg flex justify-center items-center gap-2'><TiTick className='text-green-500 border border-black rounded-full' /> 30 weeks full-time program with live classes</p>
           <p className='font-bold text-lg flex justify-center items-center gap-2'><TiTick className='text-green-500 border border-black rounded-full' /> Top recruiters from PayTM, Walmart, Amazon</p>

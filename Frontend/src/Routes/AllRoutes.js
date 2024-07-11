@@ -11,6 +11,11 @@ import OurCourses from '../Components/HomePages/OurCourses';
 import Login from '../Components/Login';
 import SignUp from '../Components/SignUp';
 import Footer from '../Components/Footer';
+import MernStack from '../Components/HomePages/Mern';
+import ContactUs from '../Components/HomePages/ContactUs';
+import StudentContent from '../Components/StudentContent';
+import StudProfile from '../Components/HomePages/StudProfile';
+import AboutUs from '../Components/HomePages/AboutUs';
 
 const AllRoutes = () => {
   return (
@@ -25,6 +30,11 @@ const AllRoutes = () => {
         <Route path="/ourCourses/fullStack" element={<FullStack />} />
         <Route path="/ourCourses/python" element={<Python />} />
         <Route path="/ourCourses/digitalMar" element={<DigitalMar />} />
+        <Route path="/mernstack" element={<MernStack />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/my-content/:studentId" element={<StudentContent />} />
+        <Route path="/studprofile" element={<StudProfile />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
       <Footer />
     </>

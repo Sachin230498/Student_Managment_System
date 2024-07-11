@@ -137,13 +137,21 @@ import { TbWorld } from "react-icons/tb";
 import { GiPublicSpeaker } from "react-icons/gi";
 import { RiContactsFill } from "react-icons/ri";
 import { IoVideocam } from "react-icons/io5";
-
+import pycourse from '../../Assets/pycourse.jpg'
 const Python = () => {
   return (
     <>
-      <div className='flex flex-col justify-center items-center p-3 mt-16' style={{ backgroundImage: "url(https://i.pinimg.com/564x/c9/e1/86/c9e1865fc12448afb7f25a355dd7169b.jpg)", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
+      {/* <div className='flex flex-col justify-center items-center p-3 mt-16' style={{ backgroundImage: "url(https://i.pinimg.com/564x/c9/e1/86/c9e1865fc12448afb7f25a355dd7169b.jpg)", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}> */}
+      <div
+      className='flex flex-col justify-center items-center p-3 mt-16'
+      style={{
+        backgroundImage: `url(${pycourse})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+      }}
+    >
         <div className='flex flex-col justify-center items-center gap-2 mt-6 mb-6'>
-          <p className='sm:text-4xl text-2xl font-bold mb-6'>Become a Python Developer</p>
+          <p id="typewriter" className='sm:text-4xl text-2xl font-bold mb-6'>Become a Python Developer</p>
           <p className='font-bold text-md flex justify-center items-center gap-2'><TiTick className='text-green-500 border border-black rounded-full' /> No prior coding experience required</p>
           <p className='font-bold text-md flex justify-center items-center gap-2'><TiTick className='text-green-500 border border-black rounded-full' /> 30 weeks full-time program with live classes</p>
           <p className='font-bold text-md flex justify-center items-center gap-2'><TiTick className='text-green-500 border border-black rounded-full' /> Top recruiters from PayTM, Walmart, Amazon</p>

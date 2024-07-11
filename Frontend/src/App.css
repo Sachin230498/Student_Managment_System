@@ -49,3 +49,65 @@
 .link:hover {
   text-decoration: underline;
 }
+
+
+#typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid;
+  animation: typing 7s steps(30, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  0% { width: 0; }
+  50% { width: 100%; }
+  100% { width: 0; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
+
+
+
+
+
+
+
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.marquee {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.animate-marquee-right {
+  display: inline-flex;
+  animation: marquee-right 40s linear infinite;
+}
+
+.animate-marquee-left {
+  display: inline-flex;
+  animation: marquee-left 40s linear infinite;
+}

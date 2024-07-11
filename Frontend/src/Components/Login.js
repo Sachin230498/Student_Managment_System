@@ -1,11 +1,10 @@
-
-
 // import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 // import axios from 'axios';
 // import { FaGoogle, FaApple } from 'react-icons/fa';
 // import { MdEmail } from 'react-icons/md';
+
 
 // const Login = ({ onClose }) => {
 //   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -21,35 +20,30 @@
 
 //     try {
 //       const response = await axios.post('http://localhost:8081/api/login', { email, password });
-//       const { token, role } = response.data;
+//       const { token, role, id } = response.data;
+    
+ 
+     
 
 //       localStorage.setItem('token', token);
 //       localStorage.setItem('role', role);
+//       localStorage.setItem('studentId', id);
 
 //       if (role === 'Admin' || role === 'Instructor') {
 //         navigate('/dashboard');
-//       }
-//       if (role === 'Student') {
+//       } else if (role === 'Student') {
 //         navigate('/home');
+//       } else {
+//         console.error('Unknown role:', role);
 //       }
 //     } catch (error) {
-//       if (error.response) {
-//         // The request was made and the server responded with a status code
-//         // that falls out of the range of 2xx
-//         console.error('Login failed:', error.response.data);
-//       } else if (error.request) {
-//         // The request was made but no response was received
-//         console.error('No response received:', error.request);
-//       } else {
-//         // Something happened in setting up the request that triggered an Error
-//         console.error('Error:', error.message);
-//       }
+//       console.error('Login failed:', error.response ? error.response.data : error.message);
 //     }
 //   };
 
 //   return (
-// <div className='flex flex-col md:flex-row justify-center items-center h-screen' style={{ backgroundImage: 'linear-gradient(to top, #d9afd9 0%, #97d9e1 100%)' }}>
-// <div className='bg-white shadow-2xl p-8 rounded-lg max-w-md w-full transform transition-transform duration-300 hover:scale-105'>
+//     <div className='flex flex-col md:flex-row justify-center items-center h-screen' style={{ backgroundImage: 'linear-gradient(to top, #d9afd9 0%, #97d9e1 100%)' }}>
+//       <div className='bg-white shadow-2xl p-8 rounded-lg max-w-md w-full transform transition-transform duration-300 hover:scale-105'>
 //         <button className='text-2xl ml-auto text-black' onClick={onClose}>&times;</button>
 //         <h1 className='font-bold font-serif text-2xl text-center mb-6'>Hi, Welcome!👋</h1>
 //         <form onSubmit={handleLogin} className='flex flex-col gap-4'>
@@ -129,10 +123,11 @@ const Login = ({ onClose }) => {
 
     try {
       const response = await axios.post('http://localhost:8081/api/login', { email, password });
-      const { token, role } = response.data;
+      const { token, role, id } = response.data;
 
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
+      localStorage.setItem('studentId', id);
 
       if (role === 'Admin' || role === 'Instructor') {
         navigate('/dashboard');
